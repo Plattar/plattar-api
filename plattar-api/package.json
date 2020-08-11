@@ -1,5 +1,5 @@
 {
-  "name": "plattar-api",
+  "name": "@plattar/plattar-api",
   "version": "1.90.1",
   "description": "Module for interfacing with the Plattar API (https://www.plattar.com)",
   "main": "index.js",
@@ -11,15 +11,18 @@
     "url": "git+https://github.com/Plattar/plattar-api.git"
   },
   "keywords": [
-    "Plattar",
+    "plattar",
     "npm",
     "AR",
-    "Augmented",
-    "Reality",
-    "AugmentedReality",
-    "API"
+    "augmented",
+    "reality",
+    "augmentedreality",
+    "augmented-reality",
+    "api",
+    "apiaccess",
+    "api-access"
   ],
-  "author": "Plattar",
+  "author": "plattar",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Plattar/plattar-api/issues"
