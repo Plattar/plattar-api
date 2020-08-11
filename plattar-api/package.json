@@ -1,0 +1,28 @@
+{
+  "name": "plattar-api",
+  "version": "1.90.1",
+  "description": "Module for interfacing with the Plattar API (https://www.plattar.com)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Plattar/plattar-api.git"
+  },
+  "keywords": [
+    "Plattar",
+    "npm",
+    "AR",
+    "Augmented",
+    "Reality",
+    "AugmentedReality",
+    "API"
+  ],
+  "author": "Plattar",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Plattar/plattar-api/issues"
+  },
+  "homepage": "https://github.com/Plattar/plattar-api#readme"
+}
