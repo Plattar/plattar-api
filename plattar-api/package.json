@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/Plattar/plattar-api/issues"
   },
-  "homepage": "https://github.com/Plattar/plattar-api#readme"
+  "homepage": "https://github.com/Plattar/plattar-api#readme",
+  "dependencies": {
+    "got": "^11.5.2"
+  }
 }
