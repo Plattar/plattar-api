@@ -20,7 +20,13 @@ class Plattar {
         return this.authToken;
     }
 
-    auth(token) {
+    get origin() {
+        return this.serverLocation;
+    }
+
+    auth(token, opt) {
+        const opt = opt || { validate: false };
+
         const promise = new Promise((resolve, reject) => {
             const server = this.serverLocation;
 
@@ -31,6 +37,13 @@ class Plattar {
 
             if (!token) {
                 reject(new Error('Plattar.auth(token) - token variable is undefined'));
+                return;
+            }
+
+            if (!opt.validate) {
+                this.authToken = token;
+
+                resolve(this);
                 return;
             }
 
@@ -55,14 +68,19 @@ class Plattar {
         return promise;
     }
 
-    get origin() {
-        return this.serverLocation;
-    }
+    origin(server, opt) {
+        const opt = opt || { validate: false };
 
-    origin(server) {
         const promise = new Promise((resolve, reject) => {
             if (!server) {
                 reject(new Error('Plattar.origin(server) - server variable is undefined'));
+                return;
+            }
+
+            if (!opt.validate) {
+                this.serverLocation = server;
+
+                resolve(this);
                 return;
             }
 
