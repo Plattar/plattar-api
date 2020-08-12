@@ -7,19 +7,19 @@ class Plattar {
         this._serverLocation = undefined;
     }
 
-    get origin() {
+    get server() {
         return {
-            production: 'https://app.plattar.com/api/v2/',
+            prod: 'https://app.plattar.com/api/v2/',
             staging: 'https://staging.plattar.space/api/v2/',
             dev: 'https://localhost/api/v2/'
         };
     }
 
-    get auth() {
+    get authToken() {
         return this._authToken;
     }
 
-    get origin() {
+    get originLocation() {
         return this._serverLocation;
     }
 
@@ -27,7 +27,7 @@ class Plattar {
         const copt = opt || { validate: false };
 
         return new Promise((resolve, reject) => {
-            const server = this.origin;
+            const server = this.originLocation;
 
             if (!server) {
                 reject(new Error('Plattar.auth(token) - cannot authenticate as server not set via Plattar.origin(server)'));
@@ -51,13 +51,12 @@ class Plattar {
             const validate = server + 'plattaruser/xauth/validate';
 
             const options = {
-                json: true,
                 headers: {
                     'plattar-auth-token': token
                 }
             };
 
-            got(validate, options).then((response) => {
+            got.get(validate, options).then((response) => {
                 this._authToken = {
                     'plattar-auth-token': token
                 };
@@ -87,16 +86,11 @@ class Plattar {
 
             const ping = server + 'ping';
 
-            const options = {
-                json: true
-            };
-
-            got(ping, options).then((response) => {
+            got.get(ping).then((response) => {
                 this._serverLocation = server;
 
                 resolve(this);
             }).catch((error) => {
-                console.log(error);
                 reject(new Error('Plattar.origin(server) - failed to ping server at ' + ping));
             });
         });
