@@ -1,7 +1,7 @@
 {
   "name": "local-dev",
   "version": "1.0.0",
-  "description": "Local Development & Testing for plattar-api",
+  "description": "Local Development & Testing for @plattar/plattar-api",
   "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

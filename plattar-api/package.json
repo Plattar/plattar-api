@@ -1,6 +1,6 @@
 {
   "name": "@plattar/plattar-api",
-  "version": "1.90.2-dev",
+  "version": "1.90.3-dev",
   "description": "Module for interfacing with the Plattar API (https://www.plattar.com)",
   "main": "index.js",
   "scripts": {
