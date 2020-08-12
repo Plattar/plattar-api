@@ -8,12 +8,11 @@ class Plattar {
     }
 
     static get server() {
-        const servers = {
+        return {
             production: 'https://app.plattar.com/api/v2/',
-            staging: 'https://staging.plattar.space/api/v2/'
+            staging: 'https://staging.plattar.space/api/v2/',
+            dev: 'https://localhost/api/v2/'
         };
-
-        return servers;
     }
 
     get auth() {
@@ -27,7 +26,7 @@ class Plattar {
     auth(token, opt) {
         const opt = opt || { validate: false };
 
-        const promise = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             const server = this.serverLocation;
 
             if (!server) {
@@ -41,13 +40,15 @@ class Plattar {
             }
 
             if (!opt.validate) {
-                this.authToken = token;
+                this.authToken = {
+                    'plattar-auth-token': token
+                };
 
                 resolve(this);
                 return;
             }
 
-            const validate = server + 'plattaruser/validate';
+            const validate = server + 'plattaruser/xauth/validate';
 
             const options = {
                 json: true,
@@ -57,21 +58,21 @@ class Plattar {
             };
 
             got(validate, options).then((response) => {
-                this.authToken = token;
+                this.authToken = {
+                    'plattar-auth-token': token
+                };
 
                 resolve(this);
             }).catch((error) => {
                 reject(new Error('Plattar.auth(token) - failed to validate authentication token at ' + validate));
             });
         });
-
-        return promise;
     }
 
     origin(server, opt) {
         const opt = opt || { validate: false };
 
-        const promise = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             if (!server) {
                 reject(new Error('Plattar.origin(server) - server variable is undefined'));
                 return;
@@ -98,8 +99,6 @@ class Plattar {
                 reject(new Error('Plattar.origin(server) - failed to ping server at ' + ping));
             });
         });
-
-        return promise;
     }
 }
 
