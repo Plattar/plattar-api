@@ -1,0 +1,14 @@
+{
+  "name": "local-dev",
+  "version": "1.0.0",
+  "description": "Local Development & Testing for plattar-api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Plattar",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@plattar/plattar-api": "file:../plattar-api"
+  }
+}
