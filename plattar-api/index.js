@@ -3,11 +3,11 @@ const got = require('got');
 'use strict';
 class Plattar {
     constructor() {
-        this.authToken = undefined;
-        this.serverLocation = undefined;
+        this._authToken = undefined;
+        this._serverLocation = undefined;
     }
 
-    static get server() {
+    get origin() {
         return {
             production: 'https://app.plattar.com/api/v2/',
             staging: 'https://staging.plattar.space/api/v2/',
@@ -16,18 +16,18 @@ class Plattar {
     }
 
     get auth() {
-        return this.authToken;
+        return this._authToken;
     }
 
     get origin() {
-        return this.serverLocation;
+        return this._serverLocation;
     }
 
     auth(token, opt) {
-        const opt = opt || { validate: false };
+        const copt = opt || { validate: false };
 
         return new Promise((resolve, reject) => {
-            const server = this.serverLocation;
+            const server = this.origin;
 
             if (!server) {
                 reject(new Error('Plattar.auth(token) - cannot authenticate as server not set via Plattar.origin(server)'));
@@ -39,8 +39,8 @@ class Plattar {
                 return;
             }
 
-            if (!opt.validate) {
-                this.authToken = {
+            if (!copt.validate) {
+                this._authToken = {
                     'plattar-auth-token': token
                 };
 
@@ -58,7 +58,7 @@ class Plattar {
             };
 
             got(validate, options).then((response) => {
-                this.authToken = {
+                this._authToken = {
                     'plattar-auth-token': token
                 };
 
@@ -70,7 +70,7 @@ class Plattar {
     }
 
     origin(server, opt) {
-        const opt = opt || { validate: false };
+        const copt = opt || { validate: false };
 
         return new Promise((resolve, reject) => {
             if (!server) {
@@ -78,8 +78,8 @@ class Plattar {
                 return;
             }
 
-            if (!opt.validate) {
-                this.serverLocation = server;
+            if (!copt.validate) {
+                this._serverLocation = server;
 
                 resolve(this);
                 return;
@@ -92,14 +92,15 @@ class Plattar {
             };
 
             got(ping, options).then((response) => {
-                this.serverLocation = server;
+                this._serverLocation = server;
 
                 resolve(this);
             }).catch((error) => {
+                console.log(error);
                 reject(new Error('Plattar.origin(server) - failed to ping server at ' + ping));
             });
         });
     }
 }
 
-module.exports = Plattar;
+module.exports = new Plattar();
