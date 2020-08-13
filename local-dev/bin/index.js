@@ -1,1 +1,1 @@
-const plattar = require('@plattar/plattar-api');
+const Plattar = require('@plattar/plattar-api');

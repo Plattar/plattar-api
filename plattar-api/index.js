@@ -97,4 +97,4 @@ class Plattar {
     }
 }
 
-module.exports = new Plattar();
+module.exports = Plattar;
