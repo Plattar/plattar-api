@@ -80,6 +80,12 @@ class PlattarObject {
 
     get() {
         return new Promise((resolve, reject) => {
+            // we cannot perform a GET request without an ID
+            if (!this.id) {
+                reject(new Error('PlattarObject.' + this.type + '.get() - object id is missing'));
+                return;
+            }
+
             // check global cache first
             const cached = PlattarObject._GetGlobalCachedObject(this);
 
@@ -99,6 +105,10 @@ class PlattarObject {
             const endpoint = origin + this.type + '/' + this.id;
 
             got.get(endpoint, options).then((response) => {
+                const body = response.body;
+                const json = JSON.parse(body);
+
+                this._attributes = json.data.attributes;
 
                 // cache the current object in the global cache
                 this._cache();
@@ -107,26 +117,26 @@ class PlattarObject {
                 const body = error.response.body;
                 const json = JSON.parse(body);
 
-                reject(new Error('PlattarObject.' + this.type + '].get() - ' + json.errors[0].detail));
+                reject(new Error('PlattarObject.' + this.type + '.get(' + this.id + ') - ' + json.errors[0].detail));
             });
         });
     }
 
     update() {
         return new Promise((resolve, reject) => {
-
+            reject(new Error('PlattarObject.' + this.type + '.update(' + this.id + ') - not implemented'));
         });
     }
 
     create() {
         return new Promise((resolve, reject) => {
-
+            reject(new Error('PlattarObject.' + this.type + '.create(' + this.id + ') - not implemented'));
         });
     }
 
     delete() {
         return new Promise((resolve, reject) => {
-
+            reject(new Error('PlattarObject.' + this.type + '.delete(' + this.id + ') - not implemented'));
         });
     }
 }
