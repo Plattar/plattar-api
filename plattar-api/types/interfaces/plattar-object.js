@@ -5,7 +5,7 @@ class PlattarObject {
 
     /**
      * Plattar uses GUID for all object id's. This means
-     * that the GUID will not be chared between different
+     * that the GUID will not be shared between different
      * object instances. This allows us to create a global
      * static cache to optimise fetch operations for all
      * objects.
@@ -14,16 +14,22 @@ class PlattarObject {
      */
     static _GlobalObjectCache = {};
 
-    static InvalidateGlobalCache() {
+    static _InvalidateGlobalCache() {
         PlattarObject._GlobalObjectCache = {};
     }
 
-    static _HasCachedObject(obj) {
+    static _HasGlobalCachedObject(obj) {
         return PlattarObject._GlobalObjectCache.hasOwnProperty(obj.id);
     }
 
-    static _GetCachedObject(obj) {
-        return PlattarObject._HasCachedObject(obj) ? PlattarObject._GlobalObjectCache[obj.id] : undefined;
+    static _GetGlovalCachedObject(obj) {
+        return PlattarObject._HasGlobalCachedObject(obj) ? PlattarObject._GlobalObjectCache[obj.id] : undefined;
+    }
+
+    static _DeleteGlobalCachedObject(obj) {
+        if (PlattarObject._HasGlobalCachedObject(obj)) {
+            delete PlattarObject._GlobalObjectCache[obj.id];
+        }
     }
 
     constructor(server, id, type) {
@@ -31,6 +37,13 @@ class PlattarObject {
         this._server = server;
         this._type = type;
         this._attributes = {};
+    }
+
+    /**
+     * Invalidates this specific Object from the Global Cache
+     */
+    invalidate() {
+        return PlattarObject._DeleteGlobalCachedObject(this);
     }
 
     /**
