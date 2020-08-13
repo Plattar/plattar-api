@@ -1,18 +1,24 @@
 const got = require('got');
 
 'use strict';
+const Project = require('./types/project.js');
+
 class Plattar {
     constructor() {
-        this._authToken = undefined;
+        this._authToken = {};
         this._serverLocation = undefined;
     }
 
-    get server() {
-        return {
-            prod: 'https://app.plattar.com/api/v2/',
-            staging: 'https://staging.plattar.space/api/v2/',
-            dev: 'https://localhost/api/v2/'
-        };
+    get prod() {
+        return 'https://app.plattar.com/api/v2/';
+    }
+
+    get staging() {
+        return 'https://staging.plattar.space/api/v2/';
+    }
+
+    get dev() {
+        return 'https://localhost/api/v2/';
     }
 
     get authToken() {
@@ -97,4 +103,7 @@ class Plattar {
     }
 }
 
-module.exports = Plattar;
+module.exports = {
+    Server: Plattar,
+    Project: Project
+}
