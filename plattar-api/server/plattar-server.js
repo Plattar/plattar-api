@@ -79,7 +79,7 @@ class PlattarServer {
                 return;
             }
 
-            const validate = server + 'plattaruser/xauth/validate';
+            const endpoint = server + 'plattaruser/xauth/validate';
 
             const options = {
                 headers: {
@@ -87,14 +87,14 @@ class PlattarServer {
                 }
             };
 
-            got.get(validate, options).then((response) => {
+            got.get(endpoint, options).then((response) => {
                 this._authToken = {
                     'plattar-auth-token': token
                 };
 
                 resolve(this);
             }).catch((error) => {
-                reject(new Error('Plattar.auth(token) - failed to validate authentication token at ' + validate));
+                reject(new Error('Plattar.auth(token) - failed to validate authentication token at ' + endpoint));
             });
         });
     }
@@ -115,14 +115,14 @@ class PlattarServer {
                 return;
             }
 
-            const ping = server + 'ping';
+            const endpoint = server + 'ping';
 
-            got.get(ping).then((response) => {
+            got.get(endpoint).then((response) => {
                 this._serverLocation = server;
 
                 resolve(this);
             }).catch((error) => {
-                reject(new Error('Plattar.origin(server) - failed to ping server at ' + ping));
+                reject(new Error('Plattar.origin(server) - failed to ping server at ' + endpoint));
             });
         });
     }
