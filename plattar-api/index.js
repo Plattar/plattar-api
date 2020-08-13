@@ -6,7 +6,7 @@ const Project = require('./types/project.js');
 class Plattar {
     constructor() {
         this._authToken = {};
-        this._serverLocation = undefined;
+        this._serverLocation = this.prod;
     }
 
     get prod() {
