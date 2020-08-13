@@ -80,6 +80,11 @@ class PlattarObject {
 
     get() {
         return new Promise((resolve, reject) => {
+            if (!this._server) {
+                reject(new Error('PlattarObject.' + this.type + '.get() - server is missing, pass a server instance or create a default server'));
+                return;
+            }
+
             // we cannot perform a GET request without an ID
             if (!this.id) {
                 reject(new Error('PlattarObject.' + this.type + '.get() - object id is missing'));
@@ -114,6 +119,11 @@ class PlattarObject {
                 this._cache();
                 resolve(this);
             }).catch((error) => {
+                if (!error || !error.response || !error.response.body) {
+                    reject(new Error('PlattarObject.' + this.type + '.get(' + this.id + ') - critical error occured, cannot proceed'));
+                    return;
+                }
+
                 const body = error.response.body;
                 const json = JSON.parse(body);
 

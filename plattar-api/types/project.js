@@ -2,18 +2,19 @@ const got = require('got');
 
 'use strict';
 const PlattarObject = require('./interfaces/plattar-object.js');
+const Server = require('./../server/plattar-server.js');
 
 class Project extends PlattarObject {
-    constructor(server, id) {
-        super(server, id, Project.type());
+    constructor(id, server) {
+        super(server || Server.default(), id, Project.type());
     }
 
     static type() {
         return 'application';
     }
 
-    static get(server, id) {
-        return new Project(server, id).get();
+    static get(id, server) {
+        return new Project(id, server || Server.default()).get();
     }
 }
 
