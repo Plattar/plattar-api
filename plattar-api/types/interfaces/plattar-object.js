@@ -22,8 +22,12 @@ class PlattarObject {
         return PlattarObject._GlobalObjectCache.hasOwnProperty(obj.id);
     }
 
-    static _GetGlovalCachedObject(obj) {
+    static _GetGlobalCachedObject(obj) {
         return PlattarObject._HasGlobalCachedObject(obj) ? PlattarObject._GlobalObjectCache[obj.id] : undefined;
+    }
+
+    static _SetGlobalCachedObject(obj) {
+        PlattarObject._GlobalObjectCache[obj.id] = obj;
     }
 
     static _DeleteGlobalCachedObject(obj) {
@@ -44,6 +48,13 @@ class PlattarObject {
      */
     invalidate() {
         return PlattarObject._DeleteGlobalCachedObject(this);
+    }
+
+    /**
+     * Caches the current object in the global cache
+     */
+    _cache() {
+        return PlattarObject._SetGlobalCachedObject(this);
     }
 
     /**
@@ -69,7 +80,35 @@ class PlattarObject {
 
     get() {
         return new Promise((resolve, reject) => {
+            // check global cache first
+            const cached = PlattarObject._GetGlobalCachedObject(this);
 
+            if (cached) {
+                resolve(cached);
+                return;
+            }
+
+            // otherwise, proceed with the fetching op
+            const origin = this._server.originLocation;
+            const auth = this._server.authToken;
+
+            const options = {
+                headers: auth
+            };
+
+            const endpoint = origin + this.type + '/' + this.id;
+
+            got.get(endpoint, options).then((response) => {
+
+                // cache the current object in the global cache
+                this._cache();
+                resolve(this);
+            }).catch((error) => {
+                const body = error.response.body;
+                const json = JSON.parse(body);
+
+                reject(new Error('PlattarObject.' + this.type + '].get() - ' + json.errors[0].detail));
+            });
         });
     }
 
