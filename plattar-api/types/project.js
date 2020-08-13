@@ -11,6 +11,18 @@ class Project extends PlattarObject {
     static type() {
         return 'application';
     }
+
+    static get(server, id) {
+        return new Promise((resolve, reject) => {
+            const object = new Project(server, id);
+
+            object.get().then((obj) => {
+                resolve(object);
+            }).catch((err) => {
+                reject(err);
+            });
+        });
+    }
 }
 
 module.exports = Project;
