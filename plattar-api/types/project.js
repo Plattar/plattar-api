@@ -12,10 +12,6 @@ class Project extends PlattarObject {
     static type() {
         return 'application';
     }
-
-    static get(id, server) {
-        return new Project(id, server || Server.default()).get();
-    }
 }
 
 module.exports = Project;
