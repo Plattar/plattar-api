@@ -36,7 +36,11 @@ class PlattarObject {
         }
     }
 
-    constructor(server, id, type) {
+    constructor(id, server, type) {
+        if (this.constructor == PlattarObject) {
+            throw new Error('PlattarObject is abstract and cannot be created');
+        }
+
         this._id = id;
         this._server = server;
         this._type = type;
