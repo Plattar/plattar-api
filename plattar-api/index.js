@@ -3,7 +3,7 @@ const got = require('got');
 'use strict';
 const PlattarServer = require('./server/plattar-server.js');
 const PlattarUtil = require('./util/plattar-util.js');
-const Project = require('./types/project.js');
+const Application = require('./types/application.js');
 const Scene = require('./types/scene/scene.js');
 
 // import Page and its types
@@ -18,7 +18,7 @@ PlattarServer.create();
 module.exports = {
     Server: PlattarServer,
     Util: PlattarUtil,
-    Project: Project,
+    Project: Application,
     Scene: Scene,
     Page: Page,
     CardButton: CardButton,
