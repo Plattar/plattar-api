@@ -153,6 +153,23 @@ class PlattarObject {
             reject(new Error('PlattarObject.' + this.type + '.delete(' + this.id + ') - not implemented'));
         });
     }
+
+    static type() {
+        throw new Error('PlattarObject.type() - not implemented');
+    }
+
+    /**
+     * Used for performing additional query parameters
+     */
+    static include(...args) {
+        if (!args || args.length <= 0) {
+            throw new Error('PlattarObject.include(...args) - supply at least 1 argument');
+        }
+
+        for (obj in args) {
+
+        }
+    }
 }
 
 module.exports = PlattarObject;
