@@ -36,14 +36,13 @@ class PlattarObject {
         }
     }
 
-    constructor(id, server, type) {
+    constructor(id, server) {
         if (this.constructor == PlattarObject) {
             throw new Error('PlattarObject is abstract and cannot be created');
         }
 
         this._id = id;
         this._server = server;
-        this._type = type;
         this._attributes = {};
     }
 
@@ -69,13 +68,6 @@ class PlattarObject {
     }
 
     /**
-     * Returns the object type as a string
-     */
-    get type() {
-        return this._type;
-    }
-
-    /**
      * Returns all attributes of the object
      */
     get attributes() {
@@ -85,13 +77,13 @@ class PlattarObject {
     get() {
         return new Promise((resolve, reject) => {
             if (!this._server) {
-                reject(new Error('PlattarObject.' + this.type + '.get() - server is missing, pass a server instance or create a default server'));
+                reject(new Error('PlattarObject.' + this.type() + '.get() - server is missing, pass a server instance or create a default server'));
                 return;
             }
 
             // we cannot perform a GET request without an ID
             if (!this.id) {
-                reject(new Error('PlattarObject.' + this.type + '.get() - object id is missing'));
+                reject(new Error('PlattarObject.' + this.type() + '.get() - object id is missing'));
                 return;
             }
 
@@ -111,7 +103,7 @@ class PlattarObject {
                 headers: auth
             };
 
-            const endpoint = origin + this.type + '/' + this.id;
+            const endpoint = origin + this.type() + '/' + this.id;
 
             got.get(endpoint, options).then((response) => {
                 const body = response.body;
@@ -124,33 +116,33 @@ class PlattarObject {
                 resolve(this);
             }).catch((error) => {
                 if (!error || !error.response || !error.response.body) {
-                    reject(new Error('PlattarObject.' + this.type + '.get(' + this.id + ') - critical error occured, cannot proceed'));
+                    reject(new Error('PlattarObject.' + this.type() + '.get(' + this.id + ') - critical error occured, cannot proceed'));
                     return;
                 }
 
                 const body = error.response.body;
                 const json = JSON.parse(body);
 
-                reject(new Error('PlattarObject.' + this.type + '.get(' + this.id + ') - ' + json.errors[0].detail));
+                reject(new Error('PlattarObject.' + this.type() + '.get(' + this.id + ') - ' + json.errors[0].detail));
             });
         });
     }
 
     update() {
         return new Promise((resolve, reject) => {
-            reject(new Error('PlattarObject.' + this.type + '.update(' + this.id + ') - not implemented'));
+            reject(new Error('PlattarObject.' + this.type() + '.update(' + this.id + ') - not implemented'));
         });
     }
 
     create() {
         return new Promise((resolve, reject) => {
-            reject(new Error('PlattarObject.' + this.type + '.create(' + this.id + ') - not implemented'));
+            reject(new Error('PlattarObject.' + this.type() + '.create(' + this.id + ') - not implemented'));
         });
     }
 
     delete() {
         return new Promise((resolve, reject) => {
-            reject(new Error('PlattarObject.' + this.type + '.delete(' + this.id + ') - not implemented'));
+            reject(new Error('PlattarObject.' + this.type() + '.delete(' + this.id + ') - not implemented'));
         });
     }
 

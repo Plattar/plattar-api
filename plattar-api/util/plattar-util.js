@@ -1,6 +1,6 @@
 'use strict';
 
-const Project = require('./../types/project.js');
+const Project = require('../types/application.js');
 
 // import Scene types and its children
 const Scene = require('./../types/scene/scene.js');
@@ -10,6 +10,9 @@ const Page = require('./../types/page/page.js');
 const CardButton = require('./../types/page/card-button.js');
 const CardHTML = require('./../types/page/card-html.js');
 const CardIFrame = require('./../types/page/card-iframe.js');
+
+// import Product types and its children
+const Product = require('./../types/product/product.js');
 
 class PlattarUtil {
 
@@ -26,6 +29,7 @@ class PlattarUtil {
             case CardButton.type(): return new CardButton(id, server);
             case CardHTML.type(): return new CardHTML(id, server);
             case CardIFrame.type(): return new CardIFrame(id, server);
+            case Product.type(): return new Product(id, server);
             default: throw new Error('PlattarUtil.create(type, id, server) - provided type of \'' + type + '\' does not exist');
         }
     }

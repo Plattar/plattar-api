@@ -6,7 +6,7 @@ const Server = require('./../../server/plattar-server.js');
 
 class Page extends PlattarObject {
     constructor(id, server) {
-        super(id, server || Server.default(), Page.type());
+        super(id, server || Server.default());
     }
 
     static type() {
