@@ -15,7 +15,7 @@ const CardHTML = require('./types/page/card-html.js');
 const CardIFrame = require('./types/page/card-iframe.js');
 
 // import Product and its types
-const Product = require('./type/product/product.js');
+const Product = require('./types/product/product.js');
 
 // create a default server instance to be used globally
 PlattarServer.create();
