@@ -1,5 +1,3 @@
-const got = require('got');
-
 'use strict';
 const PlattarServer = require('./server/plattar-server.js');
 const PlattarUtil = require('./util/plattar-util.js');
@@ -16,6 +14,8 @@ const CardIFrame = require('./types/page/card-iframe.js');
 
 // import Product and its types
 const Product = require('./types/product/product.js');
+const ProductVariation = require('./types/product/product-variation.js');
+const ProductAnnotation = require('./types/product/product-annotation.js');
 
 // create a default server instance to be used globally
 PlattarServer.create();
@@ -29,5 +29,7 @@ module.exports = {
     CardButton: CardButton,
     CardHTML: CardHTML,
     CardIFrame: CardIFrame,
-    Product: Product
+    Product: Product,
+    ProductVariation: ProductVariation,
+    ProductAnnotation: ProductAnnotation
 }

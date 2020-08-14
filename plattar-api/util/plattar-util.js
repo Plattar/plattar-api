@@ -1,5 +1,4 @@
 'use strict';
-
 const Application = require('../types/application.js');
 
 // import Scene types and its children
@@ -13,6 +12,8 @@ const CardIFrame = require('../types/page/card-iframe.js');
 
 // import Product types and its children
 const Product = require('../types/product/product.js');
+const ProductVariation = require('../types/product/product-variation.js');
+const ProductAnnotation = require('../types/product/product-annotation.js');
 
 class PlattarUtil {
 
@@ -30,6 +31,8 @@ class PlattarUtil {
             case CardHTML.type(): return new CardHTML(id, server);
             case CardIFrame.type(): return new CardIFrame(id, server);
             case Product.type(): return new Product(id, server);
+            case ProductVariation.type(): return new ProductVariation(id, server);
+            case ProductAnnotation.type(): return new ProductAnnotation(id, server);
             default: throw new Error('PlattarUtil.create(type, id, server) - provided type of \'' + type + '\' does not exist');
         }
     }
