@@ -15,6 +15,12 @@ const Product = require('../types/product/product.js');
 const ProductVariation = require('../types/product/product-variation.js');
 const ProductAnnotation = require('../types/product/product-annotation.js');
 
+// import File and its types
+const FileAudio = require('../types/file/file-audio.js');
+const FileVideo = require('../types/file/file-video.js');
+const FileModel = require('../types/file/file-model.js');
+const FileImage = require('../types/file/file-image.js');
+
 class PlattarUtil {
 
     /**
@@ -33,6 +39,10 @@ class PlattarUtil {
             case Product.type(): return new Product(id, server);
             case ProductVariation.type(): return new ProductVariation(id, server);
             case ProductAnnotation.type(): return new ProductAnnotation(id, server);
+            case FileAudio.type(): return new FileAudio(id, server);
+            case FileVideo.type(): return new FileVideo(id, server);
+            case FileModel.type(): return new FileModel(id, server);
+            case FileImage.type(): return new FileImage(id, server);
             default: throw new Error('PlattarUtil.create(type, id, server) - provided type of \'' + type + '\' does not exist');
         }
     }
