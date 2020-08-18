@@ -44,6 +44,7 @@ class PlattarObject {
         this._id = id;
         this._server = server;
         this._attributes = {};
+        this._getIncludeQuery = [];
     }
 
     /**
@@ -150,17 +151,79 @@ class PlattarObject {
         throw new Error('PlattarObject.type() - not implemented');
     }
 
+    type() {
+        return this.constructor.type();
+    }
+
     /**
      * Used for performing additional query parameters
      */
     static include(...args) {
         if (!args || args.length <= 0) {
-            throw new Error('PlattarObject.include(...args) - supply at least 1 argument');
+            return [];
         }
 
-        for (obj in args) {
+        const includes = [this.type()];
 
+        args.forEach((obj) => {
+            // object passed is of PlattarObject type
+            if (obj.prototype instanceof PlattarObject) {
+                includes.push(`${this.type()}.${obj.type()}`);
+            }
+            else if (Array.isArray(obj)) {
+                obj.forEach((strObject) => {
+                    if (typeof strObject === 'string' || strObject instanceof String) {
+                        includes.push(`${this.type()}.${strObject}`);
+                    }
+                    else {
+                        throw new Error('PlattarObject.' + this.type() + '.include(...args) - argument of Array must only include Strings');
+                    }
+                });
+            }
+            else {
+                throw new Error('PlattarObject.' + this.type() + '.include(...args) - argument must be of type PlattarObject or Array but was type=' + (typeof obj) + ' value=' + obj);
+            }
+        });
+
+        return includes;
+    }
+
+    /**
+     * Includes this query with the next GET operation
+     */
+    include(...args) {
+        if (!args || args.length <= 0) {
+            return this;
         }
+
+        args.forEach((obj) => {
+            // object passed is of PlattarObject type
+            if (obj.prototype instanceof PlattarObject) {
+                this._getIncludeQuery.push(obj.type());
+            }
+            else if (Array.isArray(obj)) {
+                obj.forEach((strObject) => {
+                    if (typeof strObject === 'string' || strObject instanceof String) {
+                        this._getIncludeQuery.push(strObject);
+                    }
+                    else {
+                        throw new Error('PlattarObject.' + this.type() + '.include(...args) - argument of Array must only include Strings');
+                    }
+                });
+            }
+            else {
+                throw new Error('PlattarObject.' + this.type() + '.include(...args) - argument must be of type PlattarObject or Array but was type=' + (typeof obj) + ' value=' + obj);
+            }
+        });
+
+        return this;
+    }
+
+    /**
+     * Performs a combination of all include queries
+     */
+    _CombineIncludeQuery() {
+        return `${this._getIncludeQuery.map((item, i) => `${item}`).join(',')}`;
     }
 }
 
