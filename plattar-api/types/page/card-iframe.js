@@ -1,12 +1,7 @@
 'use strict';
-const PlattarObject = require('../interfaces/plattar-object.js');
-const Server = require('../../server/plattar-server.js');
+const CardBase = require('./card-base.js');
 
-class CardIFrame extends PlattarObject {
-    constructor(id, server) {
-        super(id, server || Server.default());
-    }
-
+class CardIFrame extends CardBase {
     static type() {
         return 'cardiframe';
     }
