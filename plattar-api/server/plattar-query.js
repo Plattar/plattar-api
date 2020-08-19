@@ -1,0 +1,191 @@
+const got = require('got');
+
+'use strict';
+const PlattarObject = require('../types/interfaces/plattar-object.js');
+const PlattarServer = require('./plattar-server.js');
+
+class PlattarQuery {
+
+    /**
+     * Plattar uses GUID for all object ids. This means
+     * that the GUID will not be shared between different
+     * object instances. This allows us to create a global
+     * static cache to optimise fetch operations for all
+     * objects.
+     * 
+     * WARNING: These are for internal uses only!
+     */
+    static _GlobalObjectCache = {};
+
+    static _InvalidateGlobalCache() {
+        PlattarQuery._GlobalObjectCache = {};
+    }
+
+    static _HasGlobalCachedObject(obj) {
+        return PlattarQuery._GlobalObjectCache.hasOwnProperty(obj.id);
+    }
+
+    static _GetGlobalCachedObject(obj) {
+        return PlattarQuery._HasGlobalCachedObject(obj) ? PlattarQuery._GlobalObjectCache[obj.id] : undefined;
+    }
+
+    static _SetGlobalCachedObject(obj) {
+        PlattarQuery._GlobalObjectCache[obj.id] = obj;
+    }
+
+    static _DeleteGlobalCachedObject(obj) {
+        if (PlattarQuery._HasGlobalCachedObject(obj)) {
+            delete PlattarQuery._GlobalObjectCache[obj.id];
+        }
+    }
+
+    constructor(target, server) {
+        if (!target || !(target.prototype instanceof PlattarObject)) {
+            throw new Error('PlattarQuery cannot be created as target object must inherit PlattarObject');
+        }
+
+        if (!server || !(server.prototype instanceof PlattarServer)) {
+            throw new Error('PlattarQuery cannot be created as server object must inherit PlattarServer');
+        }
+
+        this._target = target;
+        this._server = server;
+        this._getIncludeQuery = [];
+    }
+
+    get target() {
+        return this._target;
+    }
+
+    get server() {
+        return this._server;
+    }
+
+    _get(opt) {
+        return new Promise((resolve, reject) => {
+            const target = this.target;
+            const server = this.server;
+
+            // we cannot perform a GET request without an ID
+            if (!target.id) {
+                reject(new Error('PlattarQuery.' + target.type() + '.get() - object id is missing'));
+                return;
+            }
+
+            const options = opt || { cache: true };
+
+            // look in the cache only if its enabled
+            if (options.cache == true) {
+                // check global cache first
+                const cached = PlattarQuery._GetGlobalCachedObject(target);
+
+                if (cached) {
+                    resolve(cached);
+                    return;
+                }
+            }
+
+            // otherwise, proceed with the fetching op
+            const origin = server.originLocation;
+            const auth = server.authToken;
+
+            const options = {
+                headers: auth
+            };
+
+            const endpoint = origin + arget.type() + '/' + target.id;
+
+            got.get(endpoint, options).then((response) => {
+                const body = response.body;
+                const json = JSON.parse(body);
+
+                this.target._attributes = json.data.attributes;
+
+                // cache the current object in the global cache
+                if (options.cache == true) {
+                    target._cache();
+                }
+
+                resolve(target);
+            }).catch((error) => {
+                if (!error || !error.response || !error.response.body) {
+                    reject(new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - critical error occured, cannot proceed'));
+                    return;
+                }
+
+                const body = error.response.body;
+                const json = JSON.parse(body);
+
+                reject(new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - ' + json.errors[0].detail));
+            });
+        });
+    }
+
+    _update() {
+        return new Promise((resolve, reject) => {
+            reject(new Error('PlattarQuery.' + this.target.type() + '.update(' + this.target.id + ') - not implemented'));
+        });
+    }
+
+    /**
+     * Creates a brand new object in Plattar.
+     * 
+     * @param {*} reqattr the required attributes for creating this object
+     */
+    static _create(reqattr) {
+        return new Promise((resolve, reject) => {
+            reject(new Error('PlattarQuery.' + this.target.type() + '._create() - not implemented'));
+        });
+    }
+
+    _delete() {
+        return new Promise((resolve, reject) => {
+            reject(new Error('PlattarQuery.' + this.target.type() + '.delete(' + this.target.id + ') - not implemented'));
+        });
+    }
+
+    /**
+     * Includes this query with the next GET operation
+     */
+    _include(...args) {
+        if (!args || args.length <= 0) {
+            return this;
+        }
+
+        args.forEach((obj) => {
+            // object passed is of PlattarObject type
+            if (obj.prototype instanceof PlattarObject) {
+                this._getIncludeQuery.push(obj.type());
+            }
+            else if (Array.isArray(obj)) {
+                obj.forEach((strObject) => {
+                    if (typeof strObject === 'string' || strObject instanceof String) {
+                        this._getIncludeQuery.push(strObject);
+                    }
+                    else {
+                        throw new Error('PlattarQuery.' + this.target.type() + '.include(...args) - argument of Array must only include Strings');
+                    }
+                });
+            }
+            else {
+                throw new Error('PlattarQuery.' + this.targettype() + '.include(...args) - argument must be of type PlattarObject or Array but was type=' + (typeof obj) + ' value=' + obj);
+            }
+        });
+
+        return this;
+    }
+
+    /**
+     * Performs a combination of all include queries
+     */
+    _CombineIncludeQuery() {
+        if (this._CombineIncludeQuery.length <= 0) {
+            return undefined;
+        }
+
+        return `${this._getIncludeQuery.map((item, i) => `${item}`).join(',')}`;
+    }
+}
+
+
+module.exports = PlattarQuery;
