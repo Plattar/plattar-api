@@ -1,8 +1,6 @@
-const got = require('got');
-
+'use strict';
 const PlattarQuery = require('../../server/plattar-query.js');
 
-'use strict';
 class PlattarObject {
 
     constructor(id, server) {
