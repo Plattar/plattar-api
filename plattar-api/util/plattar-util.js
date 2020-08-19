@@ -46,6 +46,25 @@ const FileImage = require('../types/file/file-image.js');
 class PlattarUtil {
 
     /**
+     * Checks if the provided Object is a Plattar Object
+     * 
+     * @param {*} obj The object instance to check
+     */
+    static isPlattarObject(obj) {
+        const PlattarObject = require('../types/interfaces/plattar-object.js');
+
+        if (obj && obj.prototype && obj.prototype instanceof PlattarObject) {
+            return true;
+        }
+
+        if (obj && obj instanceof PlattarObject) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Used to dynamically match types from the Plattar API into class objects
      * Throws an Error if the provided type does not exit.
      * 

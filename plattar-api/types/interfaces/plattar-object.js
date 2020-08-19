@@ -82,10 +82,7 @@ class PlattarObject {
 
         args.forEach((obj) => {
             // object passed is of PlattarObject type
-            if (obj.prototype instanceof PlattarObject) {
-                includes.push(`${this.type()}.${obj.type()}`);
-            }
-            else if (Array.isArray(obj)) {
+            if (Array.isArray(obj)) {
                 obj.forEach((strObject) => {
                     if (typeof strObject === 'string' || strObject instanceof String) {
                         includes.push(`${this.type()}.${strObject}`);
@@ -94,6 +91,9 @@ class PlattarObject {
                         throw new Error('PlattarObject.' + this.type() + '.include(...args) - argument of Array must only include Strings');
                     }
                 });
+            }
+            else if (obj.prototype instanceof PlattarObject) {
+                includes.push(`${this.type()}.${obj.type()}`);
             }
             else {
                 throw new Error('PlattarObject.' + this.type() + '.include(...args) - argument must be of type PlattarObject or Array but was type=' + (typeof obj) + ' value=' + obj);
@@ -107,7 +107,7 @@ class PlattarObject {
      * Includes this query with the next GET operation
      */
     include(...args) {
-        this._query.include(args);
+        this._query._include(args);
 
         return this;
     }

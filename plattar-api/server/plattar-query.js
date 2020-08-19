@@ -1,9 +1,6 @@
 const got = require('got');
 
 'use strict';
-const PlattarObject = require('../types/interfaces/plattar-object.js');
-const PlattarServer = require('./plattar-server.js');
-
 class PlattarQuery {
 
     /**
@@ -40,12 +37,12 @@ class PlattarQuery {
     }
 
     constructor(target, server) {
-        if (!target || !(target.prototype instanceof PlattarObject)) {
-            throw new Error('PlattarQuery cannot be created as target object must inherit PlattarObject');
+        if (!target) {
+            throw new Error('PlattarQuery cannot be created as target object cannot be null');
         }
 
-        if (!server || !(server.prototype instanceof PlattarServer)) {
-            throw new Error('PlattarQuery cannot be created as server object must inherit PlattarServer');
+        if (!server) {
+            throw new Error('PlattarQuery cannot be created as server object cannot be null');
         }
 
         this._target = target;
@@ -89,15 +86,23 @@ class PlattarQuery {
             const origin = server.originLocation;
             const auth = server.authToken;
 
-            const options = {
+            const reqopts = {
                 headers: auth
             };
 
-            const endpoint = origin + arget.type() + '/' + target.id;
+            const includeQuery = this._IncludeQuery;
 
-            got.get(endpoint, options).then((response) => {
+            let endpoint = origin + target.type() + '/' + target.id;
+
+            if (includeQuery) {
+                endpoint = endpoint + '?include=' + includeQuery;
+            }
+
+            got.get(endpoint, reqopts).then((response) => {
                 const body = response.body;
                 const json = JSON.parse(body);
+
+                console.log(json);
 
                 this.target._attributes = json.data.attributes;
 
@@ -147,17 +152,16 @@ class PlattarQuery {
     /**
      * Includes this query with the next GET operation
      */
-    _include(...args) {
+    _include(args) {
         if (!args || args.length <= 0) {
             return this;
         }
 
+        const PlattarUtil = require('../util/plattar-util.js');
+
         args.forEach((obj) => {
             // object passed is of PlattarObject type
-            if (obj.prototype instanceof PlattarObject) {
-                this._getIncludeQuery.push(obj.type());
-            }
-            else if (Array.isArray(obj)) {
+            if (Array.isArray(obj)) {
                 obj.forEach((strObject) => {
                     if (typeof strObject === 'string' || strObject instanceof String) {
                         this._getIncludeQuery.push(strObject);
@@ -167,8 +171,11 @@ class PlattarQuery {
                     }
                 });
             }
+            else if (PlattarUtil.isPlattarObject(obj)) {
+                this._getIncludeQuery.push(obj.type());
+            }
             else {
-                throw new Error('PlattarQuery.' + this.targettype() + '.include(...args) - argument must be of type PlattarObject or Array but was type=' + (typeof obj) + ' value=' + obj);
+                throw new Error('PlattarQuery.' + this.target.type() + '.include(...args) - argument must be of type PlattarObject or Array but was type=' + (typeof obj) + ' value=' + obj);
             }
         });
 
@@ -178,8 +185,8 @@ class PlattarQuery {
     /**
      * Performs a combination of all include queries
      */
-    _CombineIncludeQuery() {
-        if (this._CombineIncludeQuery.length <= 0) {
+    get _IncludeQuery() {
+        if (this._getIncludeQuery.length <= 0) {
             return undefined;
         }
 
