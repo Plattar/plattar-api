@@ -1,7 +1,7 @@
 'use strict';
-const PlattarBase = require('../interfaces/plattar-base.js');
+const ProductBase = require('./product-base.js');
 
-class ProductVariation extends PlattarBase {
+class ProductVariation extends ProductBase {
     static type() {
         return 'productvariation';
     }

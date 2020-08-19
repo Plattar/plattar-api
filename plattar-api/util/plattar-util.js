@@ -3,6 +3,16 @@ const Application = require('../types/application.js');
 
 // import Scene types and its children
 const Scene = require('../types/scene/scene.js');
+const SceneAnnotation = require('../types/scene/scene-annotation.js');
+const SceneAudio = require('../types/scene/scene-audio.js');
+const SceneButton = require('../types/scene/scene-button.js');
+const SceneCamera = require('../types/scene/scene-camera.js');
+const SceneCarousel = require('../types/scene/scene-carousel.js');
+const SceneImage = require('../types/scene/scene-image.js');
+const SceneModel = require('../types/scene/scene-model.js');
+const ScenePanorama = require('../types/scene/scene-panorama.js');
+const ScenePoller = require('../types/scene/scene-poller.js');
+const SceneProduct = require('../types/scene/scene-product.js');
 
 // import Page types and its children
 const Page = require('../types/page/page.js');
@@ -43,6 +53,16 @@ class PlattarUtil {
         switch (type) {
             case Application.type(): return new Application(id, server);
             case Scene.type(): return new Scene(id, server);
+            case SceneAnnotation.type(): return new SceneAnnotation(id, server);
+            case SceneAudio.type(): return new SceneAudio(id, server);
+            case SceneButton.type(): return new SceneButton(id, server);
+            case SceneCamera.type(): return new SceneCamera(id, server);
+            case SceneCarousel.type(): return new SceneCarousel(id, server);
+            case SceneImage.type(): return new SceneImage(id, server);
+            case SceneModel.type(): return new SceneModel(id, server);
+            case ScenePanorama.type(): return new ScenePanorama(id, server);
+            case ScenePoller.type(): return new ScenePoller(id, server);
+            case SceneProduct.type(): return new SceneProduct(id, server);
             case Page.type(): return new Page(id, server);
             case CardButton.type(): return new CardButton(id, server);
             case CardHTML.type(): return new CardHTML(id, server);

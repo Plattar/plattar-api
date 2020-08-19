@@ -5,6 +5,16 @@ const Application = require('./types/application.js');
 
 // import Scene and its types
 const Scene = require('./types/scene/scene.js');
+const SceneAnnotation = require('./types/scene/scene-annotation.js');
+const SceneAudio = require('./types/scene/scene-audio.js');
+const SceneButton = require('./types/scene/scene-button.js');
+const SceneCamera = require('./types/scene/scene-camera.js');
+const SceneCarousel = require('./types/scene/scene-carousel.js');
+const SceneImage = require('./types/scene/scene-image.js');
+const SceneModel = require('./types/scene/scene-model.js');
+const ScenePanorama = require('./types/scene/scene-panorama.js');
+const ScenePoller = require('./types/scene/scene-poller.js');
+const SceneProduct = require('./types/scene/scene-product.js');
 
 // import Page and its types
 const Page = require('./types/page/page.js');
@@ -35,10 +45,23 @@ const FileImage = require('./types/file/file-image.js');
 PlattarServer.create();
 
 module.exports = {
+    // core types
     Server: PlattarServer,
     Util: PlattarUtil,
     Project: Application,
+    // scene and types
     Scene: Scene,
+    SceneAnnotation: SceneAnnotation,
+    SceneAudio: SceneAudio,
+    SceneButton: SceneButton,
+    SceneCamera: SceneCamera,
+    SceneCarousel: SceneCarousel,
+    SceneImage: SceneImage,
+    SceneModel: SceneModel,
+    ScenePanorama: ScenePanorama,
+    ScenePoller: ScenePoller,
+    SceneProduct, SceneProduct,
+    // page and types
     Page: Page,
     CardButton: CardButton,
     CardHTML: CardHTML,
@@ -51,9 +74,11 @@ module.exports = {
     CardTitle: CardTitle,
     CardVideo: CardVideo,
     CardYoutube: CardYoutube,
+    // product and types
     Product: Product,
     ProductVariation: ProductVariation,
     ProductAnnotation: ProductAnnotation,
+    // raw file/assets and types
     AudioFile: FileAudio,
     VideoFile: FileVideo,
     ModelFile: FileModel,

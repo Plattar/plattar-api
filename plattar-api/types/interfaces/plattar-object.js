@@ -75,7 +75,9 @@ class PlattarObject {
         return this._attributes;
     }
 
-    get() {
+    get(opt) {
+        const options = opt || { cache: true };
+
         return new Promise((resolve, reject) => {
             if (!this._server) {
                 reject(new Error('PlattarObject.' + this.type() + '.get() - server is missing, pass a server instance or create a default server'));
@@ -88,12 +90,15 @@ class PlattarObject {
                 return;
             }
 
-            // check global cache first
-            const cached = PlattarObject._GetGlobalCachedObject(this);
+            // look in the cache only if its enabled
+            if (options.cache == true) {
+                // check global cache first
+                const cached = PlattarObject._GetGlobalCachedObject(this);
 
-            if (cached) {
-                resolve(cached);
-                return;
+                if (cached) {
+                    resolve(cached);
+                    return;
+                }
             }
 
             // otherwise, proceed with the fetching op
@@ -113,7 +118,10 @@ class PlattarObject {
                 this._attributes = json.data.attributes;
 
                 // cache the current object in the global cache
-                this._cache();
+                if (options.cache == true) {
+                    this._cache();
+                }
+
                 resolve(this);
             }).catch((error) => {
                 if (!error || !error.response || !error.response.body) {
@@ -135,9 +143,14 @@ class PlattarObject {
         });
     }
 
-    create() {
+    /**
+     * Creates a brand new object in Plattar.
+     * 
+     * @param {*} reqattr the required attributes for creating this object
+     */
+    static _create(reqattr) {
         return new Promise((resolve, reject) => {
-            reject(new Error('PlattarObject.' + this.type() + '.create(' + this.id + ') - not implemented'));
+            reject(new Error('PlattarObject.' + this.type() + '._create() - not implemented'));
         });
     }
 
