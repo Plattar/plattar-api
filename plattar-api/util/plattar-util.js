@@ -65,6 +65,28 @@ class PlattarUtil {
     }
 
     /**
+     * This function will recursively reconstruct an object
+     * and its required hierarchy from a provided response JSON
+     * from the PLATTAR Server.
+     * 
+     * This is an internal use function and should not be used directly
+     * 
+     * @param {*} parent The parent object of the request
+     * @param {*} json  The parsed JSON data from the PLATTAR Server
+     * @param {*} options The cache/process options
+     */
+    static reconstruct(parent, json, options) {
+        parent._attributes = json.data.attributes;
+
+        // cache the current object in the global cache
+        if (options.cache == true) {
+            parent._cache();
+        }
+
+        // todo
+    }
+
+    /**
      * Used to dynamically match types from the Plattar API into class objects
      * Throws an Error if the provided type does not exit.
      * 

@@ -102,14 +102,9 @@ class PlattarQuery {
                 const body = response.body;
                 const json = JSON.parse(body);
 
-                console.log(json);
+                const PlattarUtil = require('../util/plattar-util.js');
 
-                this.target._attributes = json.data.attributes;
-
-                // cache the current object in the global cache
-                if (options.cache == true) {
-                    target._cache();
-                }
+                PlattarUtil.reconstruct(target, json, options);
 
                 resolve(target);
             }).catch((error) => {
