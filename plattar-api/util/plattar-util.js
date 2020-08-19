@@ -13,6 +13,10 @@ const SceneModel = require('../types/scene/scene-model.js');
 const ScenePanorama = require('../types/scene/scene-panorama.js');
 const ScenePoller = require('../types/scene/scene-poller.js');
 const SceneProduct = require('../types/scene/scene-product.js');
+const SceneShadow = require('../types/scene/scene-shadow.js');
+const SceneVideo = require('../types/scene/scene-video.js');
+const SceneVolumetric = require('../types/scene/scene-volumetric.js');
+const SceneYoutube = require('../types/scene/scene-youtube.js');
 
 // import Page types and its children
 const Page = require('../types/page/page.js');
@@ -63,6 +67,10 @@ class PlattarUtil {
             case ScenePanorama.type(): return new ScenePanorama(id, server);
             case ScenePoller.type(): return new ScenePoller(id, server);
             case SceneProduct.type(): return new SceneProduct(id, server);
+            case SceneShadow.type(): return new SceneShadow(id, server);
+            case SceneVideo.type(): return new SceneVideo(id, server);
+            case SceneVolumetric.type(): return new SceneVolumetric(id, server);
+            case SceneYoutube.type(): return new SceneYoutube(id, server);
             case Page.type(): return new Page(id, server);
             case CardButton.type(): return new CardButton(id, server);
             case CardHTML.type(): return new CardHTML(id, server);

@@ -15,6 +15,10 @@ const SceneModel = require('./types/scene/scene-model.js');
 const ScenePanorama = require('./types/scene/scene-panorama.js');
 const ScenePoller = require('./types/scene/scene-poller.js');
 const SceneProduct = require('./types/scene/scene-product.js');
+const SceneShadow = require('./types/scene/scene-shadow.js');
+const SceneVideo = require('./types/scene/scene-video.js');
+const SceneVolumetric = require('./types/scene/scene-volumetric.js');
+const SceneYoutube = require('./types/scene/scene-youtube.js');
 
 // import Page and its types
 const Page = require('./types/page/page.js');
@@ -61,6 +65,10 @@ module.exports = {
     ScenePanorama: ScenePanorama,
     ScenePoller: ScenePoller,
     SceneProduct, SceneProduct,
+    SceneShadow: SceneShadow,
+    SceneVideo: SceneVideo,
+    SceneVolumetric: SceneVolumetric,
+    SceneYoutube: SceneYoutube,
     // page and types
     Page: Page,
     CardButton: CardButton,
