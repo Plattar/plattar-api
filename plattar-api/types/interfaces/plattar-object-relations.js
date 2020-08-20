@@ -51,7 +51,7 @@ class PlattarObjectRelations {
      * @param {*} id (optional) Object ID to filter with
      */
     list(obj, id) {
-        if (!ob) {
+        if (!obj) {
             return [];
         }
 
@@ -88,7 +88,7 @@ class PlattarObjectRelations {
      * @param {*} id (optional) Object ID to filter with
      */
     first(obj, id) {
-        const list = this.filter(obj, id);
+        const list = this.list(obj, id);
 
         if (list.length <= 0) {
             return undefined;

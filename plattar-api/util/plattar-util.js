@@ -93,25 +93,33 @@ class PlattarUtil {
                 if (Array.isArray(data)) {
                     data.forEach((item) => {
                         const construct = PlattarUtil.create(key, item.id, server);
+                        construct._attributes = item.attributes || {};
 
                         parent.relationships._put(construct);
                     });
                 }
                 else {
                     const construct = PlattarUtil.create(key, data.id, server);
+                    construct._attributes = data.attributes || {};
 
                     parent.relationships._put(construct);
                 }
             }
         }
 
+        // loop through the includes and populate as required
         if (json.included) {
-            json.included.forEach((items) => {
-                //console.log(items);
+            json.included.forEach((item) => {
+                const existing = parent.relationships.first(PlattarUtil.match(item.type), item.id);
+
+                if (existing) {
+                    PlattarUtil.reconstruct(existing, {
+                        data: item,
+                        included: json.included
+                    }, options);
+                }
             });
         }
-
-        // todo
     }
 
     /**
