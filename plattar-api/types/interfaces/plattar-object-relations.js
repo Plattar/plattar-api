@@ -22,7 +22,7 @@ class PlattarObjectRelations {
      * @param {*} obj The Object to insert. Object must be instance of PlattarObject
      */
     _put(obj) {
-        if (!ob) {
+        if (!obj) {
             return this;
         }
 

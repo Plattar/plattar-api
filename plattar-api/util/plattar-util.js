@@ -83,7 +83,27 @@ class PlattarUtil {
             parent._cache();
         }
 
-        console.log(json);
+        const server = parent._query.server;
+
+        // fill the relationships for the object
+        if (json.data.relationships) {
+            for (const [key, value] of Object.entries(json.data.relationships)) {
+                if (Array.isArray(value)) {
+                    value.forEach((item) => {
+                        const construct = PlattarUtil.create(key, item.data.id, server);
+
+                        parent.relationships._put(construct);
+                    });
+                }
+                else {
+                    const construct = PlattarUtil.create(key, value.data.id, server);
+
+                    parent.relationships._put(construct);
+                }
+            }
+        }
+
+        //console.log(parent);
 
         if (json.included) {
             json.included.forEach((items) => {
@@ -92,15 +112,6 @@ class PlattarUtil {
         }
 
         // todo
-    }
-
-    /**
-     * 
-     * @param {*} data 
-     * @param {*} object 
-     */
-    static _fillObject(data, object, options) {
-
     }
 
     /**

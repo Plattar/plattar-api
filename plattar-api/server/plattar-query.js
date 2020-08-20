@@ -109,7 +109,7 @@ class PlattarQuery {
                 resolve(target);
             }).catch((error) => {
                 if (!error || !error.response || !error.response.body) {
-                    reject(new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - critical error occured, cannot proceed'));
+                    reject(new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - critical error occured, cannot proceed. error was ' + error));
                     return;
                 }
 
