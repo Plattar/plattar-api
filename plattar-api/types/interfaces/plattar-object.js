@@ -1,5 +1,6 @@
 'use strict';
 const PlattarQuery = require('../../server/plattar-query.js');
+const PlattarObjectRelations = require('./plattar-object-relations.js');
 
 class PlattarObject {
 
@@ -11,6 +12,7 @@ class PlattarObject {
         this._id = id;
         this._attributes = {};
         this._query = new PlattarQuery(this, server);
+        this._relationships = new PlattarObjectRelations(this);
     }
 
     /**
@@ -39,6 +41,10 @@ class PlattarObject {
      */
     get attributes() {
         return this._attributes;
+    }
+
+    get relationships() {
+        return this._relationships;
     }
 
     get(opt) {
