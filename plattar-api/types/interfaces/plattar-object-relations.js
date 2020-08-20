@@ -50,7 +50,7 @@ class PlattarObjectRelations {
      * @param {*} obj Object type to search. Objext must be an instance of PlattarObject
      * @param {*} id (optional) Object ID to filter with
      */
-    list(obj, id) {
+    filter(obj, id) {
         if (!obj) {
             return [];
         }
@@ -59,7 +59,7 @@ class PlattarObjectRelations {
 
         // we only accept PlattarObject types
         if (!PlattarUtil.isPlattarObject(obj)) {
-            throw new Error('PlattarObjectRelations.list(PlattarObject) - argument must be type of PlattarObject');
+            throw new Error('PlattarObjectRelations.filter(PlattarObject) - argument must be type of PlattarObject');
         }
 
         // check if the key actually exists in the relations
@@ -87,8 +87,8 @@ class PlattarObjectRelations {
      * @param {*} obj Object type to search. Object must be an instance of PlattarObject
      * @param {*} id (optional) Object ID to filter with
      */
-    first(obj, id) {
-        const list = this.list(obj, id);
+    find(obj, id) {
+        const list = this.filter(obj, id);
 
         if (list.length <= 0) {
             return undefined;

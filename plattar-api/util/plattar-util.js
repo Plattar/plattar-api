@@ -110,7 +110,7 @@ class PlattarUtil {
         // loop through the includes and populate as required
         if (json.included) {
             json.included.forEach((item) => {
-                const existing = parent.relationships.first(PlattarUtil.match(item.type), item.id);
+                const existing = parent.relationships.find(PlattarUtil.match(item.type), item.id);
 
                 if (existing) {
                     PlattarUtil.reconstruct(existing, {
