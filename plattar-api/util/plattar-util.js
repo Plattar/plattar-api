@@ -43,6 +43,10 @@ const FileVideo = require('../types/file/file-video.js');
 const FileModel = require('../types/file/file-model.js');
 const FileImage = require('../types/file/file-image.js');
 
+// misc
+const ScriptEvent = require('../types/misc/script-event.js');
+const Tag = require('../types/misc/tag.js');
+
 class PlattarUtil {
 
     /**
@@ -179,6 +183,8 @@ class PlattarUtil {
             case CardVideo.type(): return CardVideo;
             case CardYoutube.type(): return CardYoutube;
             case CardImage.type(): return CardImage;
+            case ScriptEvent.type(): return ScriptEvent;
+            case Tag.type(): return Tag;
             default: throw new Error('PlattarUtil.match(type) - provided type of \'' + type + '\' does not exist and cannot be created');
         }
     }

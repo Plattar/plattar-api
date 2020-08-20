@@ -1,6 +1,6 @@
 {
   "name": "@plattar/plattar-api",
-  "version": "1.90.10",
+  "version": "1.90.11",
   "description": "Module for interfacing with the Plattar API (https://www.plattar.com)",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [
     "plattar",
     "npm",
-    "AR",
+    "ar",
     "augmented",
     "reality",
     "augmentedreality",
