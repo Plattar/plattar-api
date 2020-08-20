@@ -83,7 +83,24 @@ class PlattarUtil {
             parent._cache();
         }
 
+        console.log(json);
+
+        if (json.included) {
+            json.included.forEach((items) => {
+                //console.log(items);
+            });
+        }
+
         // todo
+    }
+
+    /**
+     * 
+     * @param {*} data 
+     * @param {*} object 
+     */
+    static _fillObject(data, object, options) {
+
     }
 
     /**
@@ -95,43 +112,55 @@ class PlattarUtil {
      * @param {*} server (optional) the server this object belongs in
      */
     static create(type, id, server) {
+        // dynamic class matching from a string type
+        const clazz = PlattarUtil.match(type);
+
+        return new clazz(id, server);
+    }
+
+    /**
+     * Dynamic class matching provided an object type as a string
+     * 
+     * @param {*} type The type of class to construct
+     */
+    static match(type) {
         switch (type) {
-            case Application.type(): return new Application(id, server);
-            case Scene.type(): return new Scene(id, server);
-            case SceneAnnotation.type(): return new SceneAnnotation(id, server);
-            case SceneAudio.type(): return new SceneAudio(id, server);
-            case SceneButton.type(): return new SceneButton(id, server);
-            case SceneCamera.type(): return new SceneCamera(id, server);
-            case SceneCarousel.type(): return new SceneCarousel(id, server);
-            case SceneImage.type(): return new SceneImage(id, server);
-            case SceneModel.type(): return new SceneModel(id, server);
-            case ScenePanorama.type(): return new ScenePanorama(id, server);
-            case ScenePoller.type(): return new ScenePoller(id, server);
-            case SceneProduct.type(): return new SceneProduct(id, server);
-            case SceneShadow.type(): return new SceneShadow(id, server);
-            case SceneVideo.type(): return new SceneVideo(id, server);
-            case SceneVolumetric.type(): return new SceneVolumetric(id, server);
-            case SceneYoutube.type(): return new SceneYoutube(id, server);
-            case Page.type(): return new Page(id, server);
-            case CardButton.type(): return new CardButton(id, server);
-            case CardHTML.type(): return new CardHTML(id, server);
-            case CardIFrame.type(): return new CardIFrame(id, server);
-            case Product.type(): return new Product(id, server);
-            case ProductVariation.type(): return new ProductVariation(id, server);
-            case ProductAnnotation.type(): return new ProductAnnotation(id, server);
-            case FileAudio.type(): return new FileAudio(id, server);
-            case FileVideo.type(): return new FileVideo(id, server);
-            case FileModel.type(): return new FileModel(id, server);
-            case FileImage.type(): return new FileImage(id, server);
-            case CardMap.type(): return new CardMap(id, server);
-            case CardParagraph.type(): return new CardParagraph(id, server);
-            case CardRow.type(): return new CardRow(id, server);
-            case CardSlider.type(): return new CardSlider(id, server);
-            case CardTitle.type(): return new CardTitle(id, server);
-            case CardVideo.type(): return new CardVideo(id, server);
-            case CardYoutube.type(): return new CardYoutube(id, server);
-            case CardImage.type(): return new CardImage(id, server);
-            default: throw new Error('PlattarUtil.create(type, id, server) - provided type of \'' + type + '\' does not exist');
+            case Application.type(): return Application;
+            case Scene.type(): return Scene;
+            case SceneAnnotation.type(): return SceneAnnotation;
+            case SceneAudio.type(): return SceneAudio;
+            case SceneButton.type(): return SceneButton;
+            case SceneCamera.type(): return SceneCamera;
+            case SceneCarousel.type(): return SceneCarousel;
+            case SceneImage.type(): return SceneImage;
+            case SceneModel.type(): return SceneModel;
+            case ScenePanorama.type(): return ScenePanorama;
+            case ScenePoller.type(): return ScenePoller;
+            case SceneProduct.type(): return SceneProduct;
+            case SceneShadow.type(): return SceneShadow;
+            case SceneVideo.type(): return SceneVideo;
+            case SceneVolumetric.type(): return SceneVolumetric;
+            case SceneYoutube.type(): return SceneYoutube;
+            case Page.type(): return Page;
+            case CardButton.type(): return CardButton;
+            case CardHTML.type(): return CardHTML;
+            case CardIFrame.type(): return CardIFrame;
+            case Product.type(): return Product;
+            case ProductVariation.type(): return ProductVariation;
+            case ProductAnnotation.type(): return ProductAnnotation;
+            case FileAudio.type(): return FileAudio;
+            case FileVideo.type(): return FileVideo;
+            case FileModel.type(): return FileModel;
+            case FileImage.type(): return FileImage;
+            case CardMap.type(): return CardMap;
+            case CardParagraph.type(): return CardParagraph;
+            case CardRow.type(): return CardRow;
+            case CardSlider.type(): return CardSlider;
+            case CardTitle.type(): return CardTitle;
+            case CardVideo.type(): return CardVideo;
+            case CardYoutube.type(): return CardYoutube;
+            case CardImage.type(): return CardImage;
+            default: throw new Error('PlattarUtil.match(type) - provided type of \'' + type + '\' does not exist and cannot be created');
         }
     }
 }

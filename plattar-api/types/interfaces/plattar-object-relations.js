@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Handles the list of relationships for the provided object
+ */
 class PlattarObjectRelations {
     constructor(parent) {
         this._parent = parent;
@@ -81,7 +84,7 @@ class PlattarObjectRelations {
      * Search for the specific object type and return the first index.
      * This function will return undefined if the object cannot be found.
      * 
-     * @param {*} obj Object type to search. Objext must be an instance of PlattarObject
+     * @param {*} obj Object type to search. Object must be an instance of PlattarObject
      * @param {*} id (optional) Object ID to filter with
      */
     first(obj, id) {
