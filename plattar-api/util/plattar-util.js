@@ -88,22 +88,22 @@ class PlattarUtil {
         // fill the relationships for the object
         if (json.data.relationships) {
             for (const [key, value] of Object.entries(json.data.relationships)) {
-                if (Array.isArray(value)) {
-                    value.forEach((item) => {
-                        const construct = PlattarUtil.create(key, item.data.id, server);
+                const data = value.data;
+
+                if (Array.isArray(data)) {
+                    data.forEach((item) => {
+                        const construct = PlattarUtil.create(key, item.id, server);
 
                         parent.relationships._put(construct);
                     });
                 }
                 else {
-                    const construct = PlattarUtil.create(key, value.data.id, server);
+                    const construct = PlattarUtil.create(key, data.id, server);
 
                     parent.relationships._put(construct);
                 }
             }
         }
-
-        //console.log(parent);
 
         if (json.included) {
             json.included.forEach((items) => {
