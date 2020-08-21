@@ -2,33 +2,6 @@ const fetch = require('node-fetch');
 
 'use strict';
 class PlattarServer {
-
-    /**
-     * We keep and maintain a default server
-     * for quick access
-     */
-    static _default = undefined;
-
-    static create(origin, auth) {
-        const newServer = new PlattarServer();
-
-        if (origin) {
-            newServer.origin(origin);
-        }
-
-        if (auth) {
-            newServer.auth(auth);
-        }
-
-        PlattarServer._default = newServer;
-
-        return newServer;
-    }
-
-    static default() {
-        return PlattarServer._default;
-    }
-
     constructor() {
         this._authToken = {};
         this._serverLocation = this.prod;
@@ -147,5 +120,27 @@ class PlattarServer {
         });
     }
 }
+
+PlattarServer._default = undefined;
+
+PlattarServer.create = (origin, auth) => {
+    const newServer = new PlattarServer();
+
+    if (origin) {
+        newServer.origin(origin);
+    }
+
+    if (auth) {
+        newServer.auth(auth);
+    }
+
+    PlattarServer._default = newServer;
+
+    return newServer;
+};
+
+PlattarServer.default = () => {
+    return PlattarServer._default;
+};
 
 module.exports = PlattarServer;
