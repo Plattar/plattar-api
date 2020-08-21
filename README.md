@@ -1,4 +1,6 @@
 [![install size](https://packagephobia.com/badge?p=@plattar/plattar-api)](https://packagephobia.com/result?p=@plattar/plattar-api)
+[![Minified](https://img.shields.io/bundlephobia/min/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
+[![MinZipped](https://img.shields.io/bundlephobia/minzip/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
 [![NPM](https://img.shields.io/npm/v/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
 [![License](https://img.shields.io/npm/l/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
 
