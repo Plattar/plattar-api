@@ -1,10 +1,10 @@
 'use strict';
 const PlattarBase = require('./interfaces/plattar-base.js');
 
-class Application extends PlattarBase { }
-
-Application.type = () => {
-    return 'application';
-};
+class Application extends PlattarBase {
+    static type() {
+        return 'application';
+    }
+}
 
 module.exports = Application;
