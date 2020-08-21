@@ -15,24 +15,24 @@ class FileBase extends PlattarBase {
      * Returns the full remote path of the file
      * Use this path to download the object into your machine
      */
-    get filePath() {
+    get path() {
         if (!this.attributes.path) {
             return undefined;
         }
 
-        return this._query.server.cdn + this.attributes.path + this.attributes.original_filename;
+        return this._query.server.originLocation.cdn + this.attributes.path + this.attributes.original_filename;
     }
 
     /**
      * Returns the full remote path of the file backup as a Zip File
      * Use this path to download the object object into your machine
      */
-    get fileBackupPath() {
+    get backupPath() {
         if (!this.attributes.path) {
             return undefined;
         }
 
-        return this._query.server.cdn + this.attributes.path + this.attributes.original_upload;
+        return this._query.server.originLocation.cdn + this.attributes.path + this.attributes.original_upload;
     }
 }
 
