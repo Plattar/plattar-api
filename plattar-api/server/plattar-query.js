@@ -2,40 +2,6 @@ const fetch = require('node-fetch');
 
 'use strict';
 class PlattarQuery {
-
-    /**
-     * Plattar uses GUID for all object ids. This means
-     * that the GUID will not be shared between different
-     * object instances. This allows us to create a global
-     * static cache to optimise fetch operations for all
-     * objects.
-     * 
-     * WARNING: These are for internal uses only!
-     */
-    static _GlobalObjectCache = {};
-
-    static _InvalidateGlobalCache() {
-        PlattarQuery._GlobalObjectCache = {};
-    }
-
-    static _HasGlobalCachedObject(obj) {
-        return PlattarQuery._GlobalObjectCache.hasOwnProperty(obj.id);
-    }
-
-    static _GetGlobalCachedObject(obj) {
-        return PlattarQuery._HasGlobalCachedObject(obj) ? PlattarQuery._GlobalObjectCache[obj.id] : undefined;
-    }
-
-    static _SetGlobalCachedObject(obj) {
-        PlattarQuery._GlobalObjectCache[obj.id] = obj;
-    }
-
-    static _DeleteGlobalCachedObject(obj) {
-        if (PlattarQuery._HasGlobalCachedObject(obj)) {
-            delete PlattarQuery._GlobalObjectCache[obj.id];
-        }
-    }
-
     constructor(target, server) {
         if (!target) {
             throw new Error('PlattarQuery cannot be created as target object cannot be null');
@@ -195,5 +161,37 @@ class PlattarQuery {
     }
 }
 
+/**
+ * Plattar uses GUID for all object ids. This means
+ * that the GUID will not be shared between different
+ * object instances. This allows us to create a global
+ * static cache to optimise fetch operations for all
+ * objects.
+ * 
+ * WARNING: These are for internal uses only!
+ */
+PlattarQuery._GlobalObjectCache = {};
+
+PlattarQuery._InvalidateGlobalCache = () => {
+    PlattarQuery._GlobalObjectCache = {};
+};
+
+PlattarQuery._HasGlobalCachedObject = (obj) => {
+    return PlattarQuery._GlobalObjectCache.hasOwnProperty(obj.id);
+};
+
+PlattarQuery._GetGlobalCachedObject = (obj) => {
+    return PlattarQuery._HasGlobalCachedObject(obj) ? PlattarQuery._GlobalObjectCache[obj.id] : undefined;
+};
+
+PlattarQuery._SetGlobalCachedObject = (obj) => {
+    PlattarQuery._GlobalObjectCache[obj.id] = obj;
+};
+
+PlattarQuery._DeleteGlobalCachedObject = (obj) => {
+    if (PlattarQuery._HasGlobalCachedObject(obj)) {
+        delete PlattarQuery._GlobalObjectCache[obj.id];
+    }
+};
 
 module.exports = PlattarQuery;
