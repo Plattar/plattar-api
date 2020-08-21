@@ -1,4 +1,4 @@
-const got = require('got');
+const fetch = require('node-fetch');
 
 'use strict';
 class PlattarServer {
@@ -82,19 +82,23 @@ class PlattarServer {
             const endpoint = server + 'plattaruser/xauth/validate';
 
             const options = {
+                methid: 'GET',
                 headers: {
                     'plattar-auth-token': token
                 }
             };
 
-            got.get(endpoint, options).then((response) => {
-                this._authToken = {
-                    'plattar-auth-token': token
-                };
+            fetch(endpoint, options).then((res) => {
+                if (res.ok) {
+                    this._authToken = {
+                        'plattar-auth-token': token
+                    };
 
-                resolve(this);
-            }).catch((error) => {
-                reject(new Error('Plattar.auth(token) - failed to validate authentication token at ' + endpoint));
+                    resolve(this);
+                }
+                else {
+                    reject(new Error('Plattar.auth(token) - failed to validate authentication token at ' + endpoint));
+                }
             });
         });
     }
@@ -117,12 +121,19 @@ class PlattarServer {
 
             const endpoint = server + 'ping';
 
-            got.get(endpoint).then((response) => {
-                this._serverLocation = server;
+            const options = {
+                methid: 'GET'
+            };
 
-                resolve(this);
-            }).catch((error) => {
-                reject(new Error('Plattar.origin(server) - failed to ping server at ' + endpoint));
+            fetch(endpoint, options).then((res) => {
+                if (res.ok) {
+                    this._serverLocation = server;
+
+                    resolve(this);
+                }
+                else {
+                    reject(new Error('Plattar.origin(server) - failed to ping server at ' + endpoint));
+                }
             });
         });
     }

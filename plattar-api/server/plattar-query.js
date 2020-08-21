@@ -1,4 +1,4 @@
-const got = require('got');
+const fetch = require('node-fetch');
 
 'use strict';
 class PlattarQuery {
@@ -87,6 +87,7 @@ class PlattarQuery {
             const auth = server.authToken;
 
             const reqopts = {
+                method: 'GET',
                 headers: auth
             };
 
@@ -98,26 +99,31 @@ class PlattarQuery {
                 endpoint = endpoint + '?include=' + includeQuery;
             }
 
-            got.get(endpoint, reqopts).then((response) => {
-                const body = response.body;
-                const json = JSON.parse(body);
+            fetch(endpoint, reqopts)
+                .then((res) => {
+                    if (res.ok) {
+                        try {
+                            return res.json();
+                        }
+                        catch (err) {
+                            return new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - critical error occured, cannot proceed');
+                        }
+                    }
 
-                const PlattarUtil = require('../util/plattar-util.js');
+                    return new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - unexpected error occured, cannot proceed. error message is ' + res.statusText);
+                })
+                .then((json) => {
+                    if (json instanceof Error) {
+                        reject(json);
+                    }
+                    else {
+                        const PlattarUtil = require('../util/plattar-util.js');
 
-                PlattarUtil.reconstruct(target, json, options);
+                        PlattarUtil.reconstruct(target, json, options);
 
-                resolve(target);
-            }).catch((error) => {
-                if (!error || !error.response || !error.response.body) {
-                    reject(new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - critical error occured, cannot proceed. error was ' + error));
-                    return;
-                }
-
-                const body = error.response.body;
-                const json = JSON.parse(body);
-
-                reject(new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - ' + json.errors[0].detail));
-            });
+                        resolve(target);
+                    }
+                });
         });
     }
 
