@@ -35,15 +35,24 @@ class PlattarServer {
     }
 
     get prod() {
-        return 'https://app.plattar.com/api/v2/';
+        return {
+            api: 'https://app.plattar.com/api/v2/',
+            cdn: 'https://cdn.plattar.com/'
+        }
     }
 
     get staging() {
-        return 'https://staging.plattar.space/api/v2/';
+        return {
+            api: 'https://staging.plattar.space/api/v2/',
+            cdn: 'https://cdn-staging.plattar.space/'
+        }
     }
 
     get dev() {
-        return 'https://localhost/api/v2/';
+        return {
+            api: 'https://localhost/api/v2/',
+            cdn: 'https://cdn-dev.plattar.space/'
+        }
     }
 
     get authToken() {
@@ -58,7 +67,7 @@ class PlattarServer {
         const copt = opt || { validate: false };
 
         return new Promise((resolve, reject) => {
-            const server = this.originLocation;
+            const server = this.originLocation.api;
 
             if (!server) {
                 reject(new Error('Plattar.auth(token) - cannot authenticate as server not set via Plattar.origin(server)'));
@@ -82,7 +91,7 @@ class PlattarServer {
             const endpoint = server + 'plattaruser/xauth/validate';
 
             const options = {
-                methid: 'GET',
+                method: 'GET',
                 headers: {
                     'plattar-auth-token': token
                 }
@@ -119,10 +128,10 @@ class PlattarServer {
                 return;
             }
 
-            const endpoint = server + 'ping';
+            const endpoint = server.api + 'ping';
 
             const options = {
-                methid: 'GET'
+                method: 'GET'
             };
 
             fetch(endpoint, options).then((res) => {

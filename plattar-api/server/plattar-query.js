@@ -83,7 +83,7 @@ class PlattarQuery {
             }
 
             // otherwise, proceed with the fetching op
-            const origin = server.originLocation;
+            const origin = server.originLocation.api;
             const auth = server.authToken;
 
             const reqopts = {
