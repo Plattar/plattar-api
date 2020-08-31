@@ -18,6 +18,16 @@ _plattar-api_ allows interfacing with the [Plattar](https://www.plattar.com) API
 npm install @plattar/plattar-api
 ```
 
+### ***Building For Browsers***
+
+* Generate ES6 minified JS
+
+``` console
+cd plattar-api
+npm install
+npm run build
+```
+
 ### ***How to Use***
 
 * Fetch a project from the Plattar API.
