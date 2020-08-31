@@ -6,7 +6,8 @@
   "module": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf build && browserify index.js -o build/plattar-api.js && uglifyjs build/plattar-api.js --compress sequences=true,conditionals=true,booleans=true --mangle --output build/plattar-api-min.js"
   },
   "repository": {
     "type": "git",
@@ -35,5 +36,9 @@
   "homepage": "https://www.plattar.com",
   "dependencies": {
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.2",
+    "uglify-es": "^3.3.9"
   }
 }
