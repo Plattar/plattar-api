@@ -83,7 +83,7 @@ PlattarUtil.reconstruct = (parent, json, options) => {
     parent._attributes = json.data.attributes;
 
     // cache the current object in the global cache
-    if (options.cache == true) {
+    if (options.cache === true) {
         parent._cache();
     }
 

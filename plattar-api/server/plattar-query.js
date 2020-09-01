@@ -38,7 +38,7 @@ class PlattarQuery {
             const options = opt || { cache: true };
 
             // look in the cache only if its enabled
-            if (options.cache == true) {
+            if (options.cache === true) {
                 // check global cache first
                 const cached = PlattarQuery._GetGlobalCachedObject(target);
 
