@@ -120,8 +120,6 @@ class PlattarServer {
     }
 }
 
-PlattarServer._default = undefined;
-
 PlattarServer.create = (origin, auth) => {
     const newServer = new PlattarServer();
 

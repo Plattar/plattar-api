@@ -74,7 +74,7 @@ class PlattarObjectRelations {
 
         // filter and only return objects that match the provided id
         return list.filter((objcheck) => {
-            return objcheck.id == id;
+            return objcheck.id === id;
         });
     }
 

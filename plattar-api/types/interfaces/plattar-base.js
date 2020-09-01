@@ -5,7 +5,7 @@ class PlattarBase extends PlattarObject {
     constructor(id, server) {
         super(id, server || Server.default());
 
-        if (this.constructor == PlattarBase) {
+        if (this.constructor === PlattarBase) {
             throw new Error("PlattarBase is abstract and cannot be created");
         }
     }

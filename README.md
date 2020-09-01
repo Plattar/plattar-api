@@ -12,7 +12,7 @@ _plattar-api_ allows interfacing with the [Plattar](https://www.plattar.com) API
 
 ### _Installation_
 
-* Install using [npm](https://www.npmjs.com/package/@plattar/plattar-api)
+*   Install using [npm](https://www.npmjs.com/package/@plattar/plattar-api)
 
 ``` console
 npm install @plattar/plattar-api
@@ -20,7 +20,7 @@ npm install @plattar/plattar-api
 
 ### _Building For Browsers_
 
-* Generate ES6 minified JS
+*   Generate ES6 minified JS
 
 ``` console
 cd plattar-api
@@ -30,7 +30,7 @@ npm run build
 
 ### _How to Use_
 
-* Fetch a project from the Plattar API.
+*   Fetch a project from the Plattar API.
 
 ``` javascript
 const {
@@ -46,7 +46,7 @@ project.get().then((proj) => {
 });
 ```
 
-* Plattar API supports relationship chaining using a single request. Fetch a project from the Plattar API that includes scenes and pages. The _Relationships_ component has a number of useful queries that can be performed.
+*   Plattar API supports relationship chaining using a single request. Fetch a project from the Plattar API that includes scenes and pages. The _Relationships_ component has a number of useful queries that can be performed.
 
 ``` javascript
 const {
@@ -75,7 +75,7 @@ project.get().then((proj) => {
 });
 ```
 
-* Plattar API also supports multiple relationship chaining using a single request. In this example we fetch a Project with Scenes and Pages aswell as SceneImage that belongs to a Scene.
+*   Plattar API also supports multiple relationship chaining using a single request. In this example we fetch a Project with Scenes and Pages aswell as SceneImage that belongs to a Scene.
 
 ``` javascript
 const {
@@ -104,7 +104,7 @@ project.get().then((proj) => {
 });
 ```
 
-* Sometimes, we don't want to include everything as part of a single request. We can chain requests based on logic.
+*   Sometimes, we don't want to include everything as part of a single request. We can chain requests based on logic.
 
 ``` javascript
 const {

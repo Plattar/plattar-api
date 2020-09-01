@@ -4,7 +4,7 @@ const PlattarObjectRelations = require("./plattar-object-relations.js");
 class PlattarObject {
 
     constructor(id, server) {
-        if (this.constructor == PlattarObject) {
+        if (this.constructor === PlattarObject) {
             throw new Error("PlattarObject is abstract and cannot be created");
         }
 

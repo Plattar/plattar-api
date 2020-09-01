@@ -5,7 +5,7 @@ class FileBase extends PlattarBase {
     constructor(id, server) {
         super(id, server || Server.default());
 
-        if (this.constructor == FileBase) {
+        if (this.constructor === FileBase) {
             throw new Error("FileBase is abstract and cannot be created");
         }
     }
@@ -16,7 +16,7 @@ class FileBase extends PlattarBase {
      */
     get path() {
         if (!this.attributes.path) {
-            return undefined;
+            return null;
         }
 
         return this._query.server.originLocation.cdn + this.attributes.path + this.attributes.original_filename;
@@ -28,7 +28,7 @@ class FileBase extends PlattarBase {
      */
     get backupPath() {
         if (!this.attributes.path) {
-            return undefined;
+            return null;
         }
 
         return this._query.server.originLocation.cdn + this.attributes.path + this.attributes.original_upload;

@@ -1,7 +1,7 @@
 "use strict";
-const PlattarServer = require("./server/plattar-server.js");
-const PlattarUtil = require("./util/plattar-util.js");
-const Application = require("./types/application.js");
+const Server = require("./server/plattar-server.js");
+const Util = require("./util/plattar-util.js");
+const Project = require("./types/application.js");
 
 // import Scene and its types
 const Scene = require("./types/scene/scene.js");
@@ -54,9 +54,9 @@ PlattarServer.create();
 
 module.exports = {
     // core types
-    Server: PlattarServer,
-    Util: PlattarUtil,
-    Project: Application,
+    Server,
+    Util,
+    Project,
     // scene and types
     Scene,
     SceneAnnotation,
