@@ -50,7 +50,7 @@ const ScriptEvent = require("./types/misc/script-event.js");
 const Tag = require("./types/misc/tag.js");
 
 // create a default server instance to be used globally
-PlattarServer.create();
+Server.create();
 
 module.exports = {
     // core types

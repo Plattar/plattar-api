@@ -135,9 +135,9 @@ PlattarUtil.reconstruct = (parent, json, options) => {
  */
 PlattarUtil.create = (type, id, server) => {
     // dynamic class matching from a string type
-    const clazz = PlattarUtil.match(type);
+    const _DynamicClass = PlattarUtil.match(type);
 
-    return new clazz(id, server);
+    return new _DynamicClass(id, server);
 };
 
 /**
