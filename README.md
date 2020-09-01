@@ -2,6 +2,7 @@
   <img src="graphics/logo.png?raw=true" alt="Plattar Logo" width="600">
 </h3>
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/28c913f457a94f3eb4a77c928613a067)](https://app.codacy.com/gh/Plattar/plattar-api?utm_source=github.com&utm_medium=referral&utm_content=Plattar/plattar-api&utm_campaign=Badge_Grade_Dashboard)
 [![install size](https://packagephobia.com/badge?p=@plattar/plattar-api)](https://packagephobia.com/result?p=@plattar/plattar-api)
 [![Minified](https://img.shields.io/bundlephobia/min/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
 [![MinZipped](https://img.shields.io/bundlephobia/minzip/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
