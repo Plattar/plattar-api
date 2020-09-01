@@ -10,7 +10,7 @@
 
 _plattar-api_ allows interfacing with the [Plattar](https://www.plattar.com) API.
 
-### ***Installation***
+### _Installation_
 
 * Install using [npm](https://www.npmjs.com/package/@plattar/plattar-api)
 
@@ -18,7 +18,7 @@ _plattar-api_ allows interfacing with the [Plattar](https://www.plattar.com) API
 npm install @plattar/plattar-api
 ```
 
-### ***Building For Browsers***
+### _Building For Browsers_
 
 * Generate ES6 minified JS
 
@@ -28,7 +28,7 @@ npm install
 npm run build
 ```
 
-### ***How to Use***
+### _How to Use_
 
 * Fetch a project from the Plattar API.
 
