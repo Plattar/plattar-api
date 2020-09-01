@@ -1,9 +1,8 @@
-'use strict';
-const ProductBase = require('./product-base.js');
+const ProductBase = require("./product-base.js");
 
 class ProductVariation extends ProductBase {
     static type() {
-        return 'productvariation';
+        return "productvariation";
     }
 }
 

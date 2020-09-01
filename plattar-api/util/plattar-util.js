@@ -1,51 +1,50 @@
-'use strict';
-const Application = require('../types/application.js');
+const Application = require("../types/application.js");
 
 // import Scene types and its children
-const Scene = require('../types/scene/scene.js');
-const SceneAnnotation = require('../types/scene/scene-annotation.js');
-const SceneAudio = require('../types/scene/scene-audio.js');
-const SceneButton = require('../types/scene/scene-button.js');
-const SceneCamera = require('../types/scene/scene-camera.js');
-const SceneCarousel = require('../types/scene/scene-carousel.js');
-const SceneImage = require('../types/scene/scene-image.js');
-const SceneModel = require('../types/scene/scene-model.js');
-const ScenePanorama = require('../types/scene/scene-panorama.js');
-const ScenePoller = require('../types/scene/scene-poller.js');
-const SceneProduct = require('../types/scene/scene-product.js');
-const SceneShadow = require('../types/scene/scene-shadow.js');
-const SceneVideo = require('../types/scene/scene-video.js');
-const SceneVolumetric = require('../types/scene/scene-volumetric.js');
-const SceneYoutube = require('../types/scene/scene-youtube.js');
+const Scene = require("../types/scene/scene.js");
+const SceneAnnotation = require("../types/scene/scene-annotation.js");
+const SceneAudio = require("../types/scene/scene-audio.js");
+const SceneButton = require("../types/scene/scene-button.js");
+const SceneCamera = require("../types/scene/scene-camera.js");
+const SceneCarousel = require("../types/scene/scene-carousel.js");
+const SceneImage = require("../types/scene/scene-image.js");
+const SceneModel = require("../types/scene/scene-model.js");
+const ScenePanorama = require("../types/scene/scene-panorama.js");
+const ScenePoller = require("../types/scene/scene-poller.js");
+const SceneProduct = require("../types/scene/scene-product.js");
+const SceneShadow = require("../types/scene/scene-shadow.js");
+const SceneVideo = require("../types/scene/scene-video.js");
+const SceneVolumetric = require("../types/scene/scene-volumetric.js");
+const SceneYoutube = require("../types/scene/scene-youtube.js");
 
 // import Page types and its children
-const Page = require('../types/page/page.js');
-const CardButton = require('../types/page/card-button.js');
-const CardHTML = require('../types/page/card-html.js');
-const CardIFrame = require('../types/page/card-iframe.js');
-const CardImage = require('../types/page/card-image.js');
-const CardMap = require('../types/page/card-map.js');
-const CardParagraph = require('../types/page/card-paragraph.js');
-const CardRow = require('../types/page/card-row.js');
-const CardSlider = require('../types/page/card-slider.js');
-const CardTitle = require('../types/page/card-title.js');
-const CardVideo = require('../types/page/card-video.js');
-const CardYoutube = require('../types/page/card-youtube.js');
+const Page = require("../types/page/page.js");
+const CardButton = require("../types/page/card-button.js");
+const CardHTML = require("../types/page/card-html.js");
+const CardIFrame = require("../types/page/card-iframe.js");
+const CardImage = require("../types/page/card-image.js");
+const CardMap = require("../types/page/card-map.js");
+const CardParagraph = require("../types/page/card-paragraph.js");
+const CardRow = require("../types/page/card-row.js");
+const CardSlider = require("../types/page/card-slider.js");
+const CardTitle = require("../types/page/card-title.js");
+const CardVideo = require("../types/page/card-video.js");
+const CardYoutube = require("../types/page/card-youtube.js");
 
 // import Product types and its children
-const Product = require('../types/product/product.js');
-const ProductVariation = require('../types/product/product-variation.js');
-const ProductAnnotation = require('../types/product/product-annotation.js');
+const Product = require("../types/product/product.js");
+const ProductVariation = require("../types/product/product-variation.js");
+const ProductAnnotation = require("../types/product/product-annotation.js");
 
 // import File and its types
-const FileAudio = require('../types/file/file-audio.js');
-const FileVideo = require('../types/file/file-video.js');
-const FileModel = require('../types/file/file-model.js');
-const FileImage = require('../types/file/file-image.js');
+const FileAudio = require("../types/file/file-audio.js");
+const FileVideo = require("../types/file/file-video.js");
+const FileModel = require("../types/file/file-model.js");
+const FileImage = require("../types/file/file-image.js");
 
 // misc
-const ScriptEvent = require('../types/misc/script-event.js');
-const Tag = require('../types/misc/tag.js');
+const ScriptEvent = require("../types/misc/script-event.js");
+const Tag = require("../types/misc/tag.js");
 
 class PlattarUtil { }
 
@@ -55,7 +54,7 @@ class PlattarUtil { }
  * @param {*} obj The object instance to check
  */
 PlattarUtil.isPlattarObject = (obj) => {
-    const PlattarObject = require('../types/interfaces/plattar-object.js');
+    const PlattarObject = require("../types/interfaces/plattar-object.js");
 
     if (obj && obj.prototype && obj.prototype instanceof PlattarObject) {
         return true;
@@ -185,7 +184,7 @@ PlattarUtil.match = (type) => {
         case CardImage.type(): return CardImage;
         case ScriptEvent.type(): return ScriptEvent;
         case Tag.type(): return Tag;
-        default: throw new Error('PlattarUtil.match(type) - provided type of \'' + type + '\' does not exist and cannot be created');
+        default: throw new Error("PlattarUtil.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
     }
 };
 

@@ -1,14 +1,13 @@
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
-'use strict';
 class PlattarQuery {
     constructor(target, server) {
         if (!target) {
-            throw new Error('PlattarQuery cannot be created as target object cannot be null');
+            throw new Error("PlattarQuery cannot be created as target object cannot be null");
         }
 
         if (!server) {
-            throw new Error('PlattarQuery cannot be created as server object cannot be null');
+            throw new Error("PlattarQuery cannot be created as server object cannot be null");
         }
 
         this._target = target;
@@ -31,7 +30,7 @@ class PlattarQuery {
 
             // we cannot perform a GET request without an ID
             if (!target.id) {
-                reject(new Error('PlattarQuery.' + target.type() + '.get() - object id is missing'));
+                reject(new Error("PlattarQuery." + target.type() + ".get() - object id is missing"));
                 return;
             }
 
@@ -53,16 +52,16 @@ class PlattarQuery {
             const auth = server.authToken;
 
             const reqopts = {
-                method: 'GET',
+                method: "GET",
                 headers: auth
             };
 
             const includeQuery = this._IncludeQuery;
 
-            let endpoint = origin + target.type() + '/' + target.id;
+            let endpoint = origin + target.type() + "/" + target.id;
 
             if (includeQuery) {
-                endpoint = endpoint + '?include=' + includeQuery;
+                endpoint = endpoint + "?include=" + includeQuery;
             }
 
             fetch(endpoint, reqopts)
@@ -72,18 +71,18 @@ class PlattarQuery {
                             return res.json();
                         }
                         catch (err) {
-                            return new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - critical error occured, cannot proceed');
+                            return new Error("PlattarQuery." + target.type() + ".get(" + target.id + ") - critical error occured, cannot proceed");
                         }
                     }
 
-                    return new Error('PlattarQuery.' + target.type() + '.get(' + target.id + ') - unexpected error occured, cannot proceed. error message is ' + res.statusText);
+                    return new Error("PlattarQuery." + target.type() + ".get(" + target.id + ") - unexpected error occured, cannot proceed. error message is " + res.statusText);
                 })
                 .then((json) => {
                     if (json instanceof Error) {
                         reject(json);
                     }
                     else {
-                        const PlattarUtil = require('../util/plattar-util.js');
+                        const PlattarUtil = require("../util/plattar-util.js");
 
                         PlattarUtil.reconstruct(target, json, options);
 
@@ -95,24 +94,19 @@ class PlattarQuery {
 
     _update() {
         return new Promise((resolve, reject) => {
-            reject(new Error('PlattarQuery.' + this.target.type() + '.update(' + this.target.id + ') - not implemented'));
+            reject(new Error("PlattarQuery." + this.target.type() + ".update(" + this.target.id + ") - not implemented"));
         });
     }
 
-    /**
-     * Creates a brand new object in Plattar.
-     * 
-     * @param {*} reqattr the required attributes for creating this object
-     */
-    static _create(reqattr) {
+    _create() {
         return new Promise((resolve, reject) => {
-            reject(new Error('PlattarQuery.' + this.target.type() + '._create() - not implemented'));
+            reject(new Error("PlattarQuery." + this.target.type() + ".create() - not implemented"));
         });
     }
 
     _delete() {
         return new Promise((resolve, reject) => {
-            reject(new Error('PlattarQuery.' + this.target.type() + '.delete(' + this.target.id + ') - not implemented'));
+            reject(new Error("PlattarQuery." + this.target.type() + ".delete(" + this.target.id + ") - not implemented"));
         });
     }
 
@@ -124,17 +118,17 @@ class PlattarQuery {
             return this;
         }
 
-        const PlattarUtil = require('../util/plattar-util.js');
+        const PlattarUtil = require("../util/plattar-util.js");
 
         args.forEach((obj) => {
             // object passed is of PlattarObject type
             if (Array.isArray(obj)) {
                 obj.forEach((strObject) => {
-                    if (typeof strObject === 'string' || strObject instanceof String) {
+                    if (typeof strObject === "string" || strObject instanceof String) {
                         this._getIncludeQuery.push(strObject);
                     }
                     else {
-                        throw new Error('PlattarQuery.' + this.target.type() + '.include(...args) - argument of Array must only include Strings');
+                        throw new Error("PlattarQuery." + this.target.type() + ".include(...args) - argument of Array must only include Strings");
                     }
                 });
             }
@@ -142,7 +136,7 @@ class PlattarQuery {
                 this._getIncludeQuery.push(obj.type());
             }
             else {
-                throw new Error('PlattarQuery.' + this.target.type() + '.include(...args) - argument must be of type PlattarObject or Array but was type=' + (typeof obj) + ' value=' + obj);
+                throw new Error("PlattarQuery." + this.target.type() + ".include(...args) - argument must be of type PlattarObject or Array but was type=" + (typeof obj) + " value=" + obj);
             }
         });
 
@@ -157,7 +151,7 @@ class PlattarQuery {
             return undefined;
         }
 
-        return `${this._getIncludeQuery.map((item, i) => `${item}`).join(',')}`;
+        return `${this._getIncludeQuery.map((item) => `${item}`).join(",")}`;
     }
 }
 

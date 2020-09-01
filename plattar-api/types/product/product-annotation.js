@@ -1,9 +1,8 @@
-'use strict';
-const ProductBase = require('./product-base.js');
+const ProductBase = require("./product-base.js");
 
 class ProductAnnotation extends ProductBase {
     static type() {
-        return 'productannotation';
+        return "productannotation";
     }
 }
 

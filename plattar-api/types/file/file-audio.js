@@ -1,9 +1,8 @@
-'use strict';
-const FileBase = require('./file-base.js');
+const FileBase = require("./file-base.js");
 
 class FileAudio extends FileBase {
     static type() {
-        return 'fileaudio';
+        return "fileaudio";
     }
 }
 

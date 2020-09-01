@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Handles the list of relationships for the provided object
  */
@@ -26,11 +24,11 @@ class PlattarObjectRelations {
             return this;
         }
 
-        const PlattarUtil = require('../../util/plattar-util.js');
+        const PlattarUtil = require("../../util/plattar-util.js");
 
         // we only accept PlattarObject types
         if (!PlattarUtil.isPlattarObject(obj)) {
-            throw new Error('PlattarObjectRelations._put(PlattarObject) - argument must be type of PlattarObject');
+            throw new Error("PlattarObjectRelations._put(PlattarObject) - argument must be type of PlattarObject");
         }
 
         // this is the first time the object is being inserted
@@ -55,11 +53,11 @@ class PlattarObjectRelations {
             return [];
         }
 
-        const PlattarUtil = require('../../util/plattar-util.js');
+        const PlattarUtil = require("../../util/plattar-util.js");
 
         // we only accept PlattarObject types
         if (!PlattarUtil.isPlattarObject(obj)) {
-            throw new Error('PlattarObjectRelations.filter(PlattarObject) - argument must be type of PlattarObject');
+            throw new Error("PlattarObjectRelations.filter(PlattarObject) - argument must be type of PlattarObject");
         }
 
         // check if the key actually exists in the relations

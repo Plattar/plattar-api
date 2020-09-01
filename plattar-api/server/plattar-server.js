@@ -1,6 +1,5 @@
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
-'use strict';
 class PlattarServer {
     constructor() {
         this._authToken = {};
@@ -9,22 +8,22 @@ class PlattarServer {
 
     get prod() {
         return {
-            api: 'https://app.plattar.com/api/v2/',
-            cdn: 'https://cdn.plattar.com/'
+            api: "https://app.plattar.com/api/v2/",
+            cdn: "https://cdn.plattar.com/"
         }
     }
 
     get staging() {
         return {
-            api: 'https://staging.plattar.space/api/v2/',
-            cdn: 'https://cdn-staging.plattar.space/'
+            api: "https://staging.plattar.space/api/v2/",
+            cdn: "https://cdn-staging.plattar.space/"
         }
     }
 
     get dev() {
         return {
-            api: 'https://localhost/api/v2/',
-            cdn: 'https://cdn-dev.plattar.space/'
+            api: "https://localhost/api/v2/",
+            cdn: "https://cdn-dev.plattar.space/"
         }
     }
 
@@ -43,43 +42,43 @@ class PlattarServer {
             const server = this.originLocation.api;
 
             if (!server) {
-                reject(new Error('Plattar.auth(token) - cannot authenticate as server not set via Plattar.origin(server)'));
+                reject(new Error("Plattar.auth(token) - cannot authenticate as server not set via Plattar.origin(server)"));
                 return;
             }
 
             if (!token) {
-                reject(new Error('Plattar.auth(token) - token variable is undefined'));
+                reject(new Error("Plattar.auth(token) - token variable is undefined"));
                 return;
             }
 
             if (!copt.validate) {
                 this._authToken = {
-                    'plattar-auth-token': token
+                    "plattar-auth-token": token
                 };
 
                 resolve(this);
                 return;
             }
 
-            const endpoint = server + 'plattaruser/xauth/validate';
+            const endpoint = server + "plattaruser/xauth/validate";
 
             const options = {
-                method: 'GET',
+                method: "GET",
                 headers: {
-                    'plattar-auth-token': token
+                    "plattar-auth-token": token
                 }
             };
 
             fetch(endpoint, options).then((res) => {
                 if (res.ok) {
                     this._authToken = {
-                        'plattar-auth-token': token
+                        "plattar-auth-token": token
                     };
 
                     resolve(this);
                 }
                 else {
-                    reject(new Error('Plattar.auth(token) - failed to validate authentication token at ' + endpoint));
+                    reject(new Error("Plattar.auth(token) - failed to validate authentication token at " + endpoint));
                 }
             });
         });
@@ -90,7 +89,7 @@ class PlattarServer {
 
         return new Promise((resolve, reject) => {
             if (!server) {
-                reject(new Error('Plattar.origin(server) - server variable is undefined'));
+                reject(new Error("Plattar.origin(server) - server variable is undefined"));
                 return;
             }
 
@@ -101,10 +100,10 @@ class PlattarServer {
                 return;
             }
 
-            const endpoint = server.api + 'ping';
+            const endpoint = server.api + "ping";
 
             const options = {
-                method: 'GET'
+                method: "GET"
             };
 
             fetch(endpoint, options).then((res) => {
@@ -114,7 +113,7 @@ class PlattarServer {
                     resolve(this);
                 }
                 else {
-                    reject(new Error('Plattar.origin(server) - failed to ping server at ' + endpoint));
+                    reject(new Error("Plattar.origin(server) - failed to ping server at " + endpoint));
                 }
             });
         });

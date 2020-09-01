@@ -1,12 +1,11 @@
-'use strict';
-const PlattarQuery = require('../../server/plattar-query.js');
-const PlattarObjectRelations = require('./plattar-object-relations.js');
+const PlattarQuery = require("../../server/plattar-query.js");
+const PlattarObjectRelations = require("./plattar-object-relations.js");
 
 class PlattarObject {
 
     constructor(id, server) {
         if (this.constructor == PlattarObject) {
-            throw new Error('PlattarObject is abstract and cannot be created');
+            throw new Error("PlattarObject is abstract and cannot be created");
         }
 
         this._id = id;
@@ -52,24 +51,19 @@ class PlattarObject {
     }
 
     update() {
-        return this._query.update();
+        return this._query._update();
     }
 
-    /**
-     * Creates a brand new object in Plattar.
-     * 
-     * @param {*} reqattr the required attributes for creating this object
-     */
-    static _create(reqattr) {
-        return PlattarQuery._create(this, reqattr);
+    create() {
+        return this._query._create();
     }
 
     delete() {
-        return this._query.delete();
+        return this._query._delete();
     }
 
     static type() {
-        throw new Error('PlattarObject.type() - not implemented');
+        throw new Error("PlattarObject.type() - not implemented");
     }
 
     type() {
@@ -90,11 +84,11 @@ class PlattarObject {
             // object passed is of PlattarObject type
             if (Array.isArray(obj)) {
                 obj.forEach((strObject) => {
-                    if (typeof strObject === 'string' || strObject instanceof String) {
+                    if (typeof strObject === "string" || strObject instanceof String) {
                         includes.push(`${this.type()}.${strObject}`);
                     }
                     else {
-                        throw new Error('PlattarObject.' + this.type() + '.include(...args) - argument of Array must only include Strings');
+                        throw new Error("PlattarObject." + this.type() + ".include(...args) - argument of Array must only include Strings");
                     }
                 });
             }
@@ -102,7 +96,7 @@ class PlattarObject {
                 includes.push(`${this.type()}.${obj.type()}`);
             }
             else {
-                throw new Error('PlattarObject.' + this.type() + '.include(...args) - argument must be of type PlattarObject or Array but was type=' + (typeof obj) + ' value=' + obj);
+                throw new Error("PlattarObject." + this.type() + ".include(...args) - argument must be of type PlattarObject or Array but was type=" + (typeof obj) + " value=" + obj);
             }
         });
 

@@ -1,9 +1,8 @@
-'use strict';
-const CardBase = require('./card-base.js');
+const CardBase = require("./card-base.js");
 
 class CardRow extends CardBase {
     static type() {
-        return 'cardrow';
+        return "cardrow";
     }
 }
 

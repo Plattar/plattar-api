@@ -1,9 +1,8 @@
-'use strict';
-const PlattarBase = require('../interfaces/plattar-base.js');
+const PlattarBase = require("../interfaces/plattar-base.js");
 
 class Tag extends PlattarBase {
     static type() {
-        return 'tag';
+        return "tag";
     }
 }
 

@@ -1,9 +1,8 @@
-'use strict';
-const SceneBase = require('./scene-base.js');
+const SceneBase = require("./scene-base.js");
 
 class SceneShadow extends SceneBase {
     static type() {
-        return 'sceneshadow';
+        return "sceneshadow";
     }
 }
 
