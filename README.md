@@ -3,8 +3,8 @@
 </h3>
 
 [![install size](https://packagephobia.com/badge?p=@plattar/plattar-api)](https://packagephobia.com/result?p=@plattar/plattar-api)
-[![Minified](https://img.shields.io/bundlephobia/min/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
-[![MinZipped](https://img.shields.io/bundlephobia/minzip/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
+[![Minified](https://img.shields.io/bundlephobia/min/@plattar/plattar-api)](https://bundlephobia.com/result?p=@plattar/plattar-api)
+[![MinZipped](https://img.shields.io/bundlephobia/minzip/@plattar/plattar-api)](https://bundlephobia.com/result?p=@plattar/plattar-api)
 [![NPM](https://img.shields.io/npm/v/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fe92068bfbef4a1aae14ae55ecd297d1)](https://www.codacy.com/gh/Plattar/plattar-api?utm_source=github.com&utm_medium=referral&utm_content=Plattar/plattar-api&utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/npm/l/@plattar/plattar-api)](https://www.npmjs.com/package/@plattar/plattar-api)
