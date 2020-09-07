@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <title>plattar-api browser dev</title>
+    <script src="../plattar-api/build/plattar-api-min.js"></script>
+    <script>
+        const project = new Plattar.Project('267f1c90-e5b8-11ea-a494-c7a7855ca934');
+
+        project.get().then((proj) => {
+            document.getElementById("sample").value = JSON.stringify(proj.attributes, undefined, 4);
+        }).catch((error) => {
+            document.getElementById("sample").value = JSON.stringify(error, undefined, 4);
+        });
+    </script>
+</head>
+
+<body>
+    <p>1. Go into plattar-api</p>
+    <p>2. Run "npm install"</p>
+    <p>3. Run "npm run build"</p>
+    <textarea readonly id="sample" name="sample" rows="26" cols="85"></textarea>
+</body>
+
+</html>
