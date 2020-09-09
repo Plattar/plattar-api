@@ -10,6 +10,15 @@ class FileBase extends PlattarBase {
         }
     }
 
+    static type() {
+        const FileAudio = require("./file-audio.js");
+        const FileVideo = require("./file-video.js");
+        const FileModel = require("./file-model.js");
+        const FileImage = require("./file-image.js");
+
+        return [FileAudio, FileVideo, FileModel, FileImage];
+    }
+
     /**
      * Returns the full remote path of the file
      * Use this path to download the object into your machine
