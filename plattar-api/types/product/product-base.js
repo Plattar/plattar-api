@@ -9,6 +9,13 @@ class ProductBase extends PlattarBase {
             throw new Error("ProductBase is abstract and cannot be created");
         }
     }
+
+    static type() {
+        const ProductVariation = require("./product-variation.js");
+        const ProductAnnotation = require("./product-annotation.js");
+
+        return [ProductAnnotation, ProductVariation];
+    }
 }
 
 module.exports = ProductBase;
