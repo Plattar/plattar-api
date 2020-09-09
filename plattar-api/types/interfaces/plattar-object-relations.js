@@ -53,6 +53,21 @@ class PlattarObjectRelations {
             return [];
         }
 
+        // for array objects, we do each individual object
+        if (Array.isArray(obj)) {
+            var compiledList = [];
+
+            obj.forEach((inObject) => {
+                const retArray = this.filter(inObject, id);
+
+                if (retArray.length > 0) {
+                    compiledList.concat(retArray);
+                }
+            });
+
+            return compiledList;
+        }
+
         const PlattarUtil = require("../../util/plattar-util.js");
 
         // we only accept PlattarObject types

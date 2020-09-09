@@ -133,7 +133,14 @@ class PlattarQuery {
                 });
             }
             else if (PlattarUtil.isPlattarObject(obj)) {
-                this._getIncludeQuery.push(obj.type());
+                const type = obj.type();
+
+                if (Array.isArray(type)) {
+                    this._include(type);
+                }
+                else {
+                    this._getIncludeQuery.push(type);
+                }
             }
             else {
                 throw new Error("PlattarQuery." + this.target.type() + ".include(...args) - argument must be of type PlattarObject or Array but was type=" + (typeof obj) + " value=" + obj);

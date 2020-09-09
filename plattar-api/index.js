@@ -48,6 +48,12 @@ const FileImage = require("./types/file/file-image.js");
 // import misc
 const ScriptEvent = require("./types/misc/script-event.js");
 const Tag = require("./types/misc/tag.js");
+const ApplicationBuild = require('./types/misc/application-build.js');
+
+// base types
+const SceneObject = require('./types/scene/scene-base.js');
+const CardObject = require('./types/page/card-base.js');
+const ProductObject = require('./types/product/product-base.js');
 
 // create a default server instance to be used globally
 Server.create();
@@ -97,5 +103,10 @@ module.exports = {
     FileImage,
     // misc
     ScriptEvent,
-    Tag
+    Tag,
+    ApplicationBuild,
+    // base types
+    SceneObject,
+    CardObject,
+    ProductObject
 }
