@@ -186,7 +186,8 @@ PlattarQuery._GetGlobalCachedObject = (obj) => {
 };
 
 PlattarQuery._SetGlobalCachedObject = (obj) => {
-    PlattarQuery._GlobalObjectCache[obj.id] = obj;
+    // enable after extensive testing - too many bugs
+    //PlattarQuery._GlobalObjectCache[obj.id] = obj;
 };
 
 PlattarQuery._DeleteGlobalCachedObject = (obj) => {

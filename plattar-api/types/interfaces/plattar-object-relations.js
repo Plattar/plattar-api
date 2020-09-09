@@ -53,21 +53,6 @@ class PlattarObjectRelations {
             return [];
         }
 
-        // for array objects, we do each individual object
-        if (Array.isArray(obj)) {
-            var compiledList = [];
-
-            obj.forEach((inObject) => {
-                const retArray = this.filter(inObject, id);
-
-                if (retArray.length > 0) {
-                    compiledList.concat(retArray);
-                }
-            });
-
-            return compiledList;
-        }
-
         const PlattarUtil = require("../../util/plattar-util.js");
 
         // we only accept PlattarObject types
@@ -75,12 +60,29 @@ class PlattarObjectRelations {
             throw new Error("PlattarObjectRelations.filter(PlattarObject) - argument must be type of PlattarObject");
         }
 
+        const type = obj.type();
+
+        // for array objects, we do each individual object
+        if (Array.isArray(type)) {
+            var compiledList = [];
+
+            type.forEach((inObject) => {
+                const retArray = this.filter(inObject, id);
+
+                if (retArray.length > 0) {
+                    compiledList = compiledList.concat(retArray);
+                }
+            });
+
+            return compiledList;
+        }
+
         // check if the key actually exists in the relations
-        if (!this._relatedObjects.hasOwnProperty(obj.type())) {
+        if (!this._relatedObjects.hasOwnProperty(type)) {
             return [];
         }
 
-        const list = this._relatedObjects[obj.type()];
+        const list = this._relatedObjects[type];
 
         // if no id is supplied, we just want everything of type
         if (!id) {
