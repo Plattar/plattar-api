@@ -45,6 +45,7 @@ const FileImage = require("../types/file/file-image.js");
 // misc
 const ScriptEvent = require("../types/misc/script-event.js");
 const Tag = require("../types/misc/tag.js");
+const ApplicationBuild = require("../types/misc/application-build.js");
 
 class PlattarUtil { }
 
@@ -184,6 +185,7 @@ PlattarUtil.match = (type) => {
         case CardImage.type(): return CardImage;
         case ScriptEvent.type(): return ScriptEvent;
         case Tag.type(): return Tag;
+        case ApplicationBuild.type(): return ApplicationBuild;
         default: throw new Error("PlattarUtil.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
     }
 };
