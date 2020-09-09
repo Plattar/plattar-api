@@ -23,7 +23,7 @@ class FileBase extends PlattarBase {
      * Returns the full remote path of the file
      * Use this path to download the object into your machine
      */
-    get path() {
+    get sourcePath() {
         if (!this.attributes.path) {
             return null;
         }
