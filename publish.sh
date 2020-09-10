@@ -1,8 +1,6 @@
 #!/bin/bash
-rm -rf plattar-api/README.md
-rm -rf plattar-api/graphics
+rm -rf plattar-api/README.md plattar-api/graphics plattar-api/node_modules plattar-api/build plattar-api/package-lock.json
 cp README.md plattar-api/README.md
 cp -R graphics plattar-api/
-cd plattar-api && npm publish --scope=public && cd ../
-rm -rf plattar-api/README.md
-rm -rf plattar-api/graphics
+cd plattar-api && npm install && npm run build && npm publish --scope=public && cd ../
+rm -rf plattar-api/README.md plattar-api/graphics plattar-api/node_modules plattar-api/build plattar-api/package-lock.json
