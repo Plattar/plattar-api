@@ -1,10 +1,9 @@
 {
   "name": "@plattar/plattar-api",
-  "version": "1.91.5",
+  "version": "1.91.6",
   "description": "Module for interfacing with the Plattar API (https://www.plattar.com)",
   "main": "index.js",
   "module": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf build && browserify --standalone Plattar index.js -o build/plattar-api.js && uglifyjs build/plattar-api.js --output build/plattar-api-min.js"
