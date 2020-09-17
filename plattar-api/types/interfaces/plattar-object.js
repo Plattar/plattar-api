@@ -111,6 +111,15 @@ class PlattarObject {
 
         return this;
     }
+
+    /**
+     * Adds a parameter for a particular request
+     */
+    addParameter(key, value, type) {
+        this._query._addParameter(key, value, type);
+
+        return this;
+    }
 }
 
 module.exports = PlattarObject;

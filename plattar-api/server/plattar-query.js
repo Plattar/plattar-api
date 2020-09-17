@@ -12,6 +12,7 @@ class PlattarQuery {
 
         this._target = target;
         this._server = server;
+        this._params = [];
         this._getIncludeQuery = [];
     }
 
@@ -57,11 +58,22 @@ class PlattarQuery {
             };
 
             const includeQuery = this._IncludeQuery;
+            const params = this._ParamFor("get");
 
             let endpoint = origin + target.type() + "/" + target.id;
 
             if (includeQuery) {
                 endpoint = endpoint + "?include=" + includeQuery;
+            }
+
+            if (params) {
+                let appender = includeQuery ? "&" : "?";
+
+                params.forEach((param) => {
+                    endpoint = endpoint + appender + param.key + "=" + param.value;
+
+                    appender = "?";
+                });
             }
 
             fetch(endpoint, reqopts)
@@ -111,6 +123,19 @@ class PlattarQuery {
     }
 
     /**
+     * Adds a specific request parameter
+     */
+    _addParameter(key, value, type) {
+        type = type || "all";
+
+        this._params.push({
+            key: key,
+            value: value,
+            type: type.toLowerCase()
+        });
+    }
+
+    /**
      * Includes this query with the next GET operation
      */
     _include(args) {
@@ -148,6 +173,24 @@ class PlattarQuery {
         });
 
         return this;
+    }
+
+    /**
+     * Filters and returns all request parameters for a particular
+     * request type
+     */
+    _ParamFor(type) {
+        type = type || "all";
+
+        const list = this._params.filter((objcheck) => {
+            return objcheck.type === type || objcheck.type === "all";
+        });
+
+        if (list.length > 0) {
+            return list;
+        }
+
+        return undefined;
     }
 
     /**
