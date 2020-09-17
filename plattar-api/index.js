@@ -48,7 +48,8 @@ const FileImage = require("./types/file/file-image.js");
 // import misc
 const ScriptEvent = require("./types/misc/script-event.js");
 const Tag = require("./types/misc/tag.js");
-const ApplicationBuild = require('./types/misc/application-build.js');
+const ApplicationBuild = require("./types/misc/application-build.js");
+const AsyncJob = require("./types/misc/async-job.js");
 
 // base types
 const SceneObject = require("./types/scene/scene-base.js");
@@ -107,8 +108,9 @@ module.exports = {
     ScriptEvent,
     Tag,
     ApplicationBuild,
+    AsyncJob,
     // base types
     SceneObject,
     CardObject,
     ProductObject
-}
+};

@@ -46,6 +46,7 @@ const FileImage = require("../types/file/file-image.js");
 const ScriptEvent = require("../types/misc/script-event.js");
 const Tag = require("../types/misc/tag.js");
 const ApplicationBuild = require("../types/misc/application-build.js");
+const AsyncJob = require("../types/misc/async-job.js");
 
 class PlattarUtil { }
 
@@ -186,6 +187,7 @@ PlattarUtil.match = (type) => {
         case ScriptEvent.type(): return ScriptEvent;
         case Tag.type(): return Tag;
         case ApplicationBuild.type(): return ApplicationBuild;
+        case AsyncJob.type(): return AsyncJob;
         default: throw new Error("PlattarUtil.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
     }
 };
