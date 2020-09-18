@@ -132,6 +132,7 @@ class PlattarQuery {
                 body: JSON.stringify(
                     {
                         data: {
+                            id: target.id,
                             attributes: target.attributes
                         }
                     }
