@@ -72,7 +72,7 @@ class PlattarQuery {
                 params.forEach((param) => {
                     endpoint = endpoint + appender + param.key + "=" + param.value;
 
-                    appender = "?";
+                    appender = "&";
                 });
             }
 
@@ -119,9 +119,23 @@ class PlattarQuery {
             const origin = server.originLocation.api;
             const auth = server.authToken;
 
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+
+            Object.assign(headers, auth);
+
             const reqopts = {
                 method: "PATCH",
-                headers: auth
+                headers: headers,
+                body: JSON.stringify(
+                    {
+                        data: {
+                            attributes: target.attributes
+                        }
+                    }
+                )
             };
 
             const params = this._ParamFor("update");
@@ -129,12 +143,12 @@ class PlattarQuery {
             let endpoint = origin + target.type() + "/" + target.id;
 
             if (params) {
-                let appender = "&";
+                let appender = "?";
 
                 params.forEach((param) => {
                     endpoint = endpoint + appender + param.key + "=" + param.value;
 
-                    appender = "?";
+                    appender = "&";
                 });
             }
 
@@ -158,7 +172,7 @@ class PlattarQuery {
                     else {
                         const PlattarUtil = require("../util/plattar-util.js");
 
-                        PlattarUtil.reconstruct(target, json, options);
+                        PlattarUtil.reconstruct(target, json, { cache: true });
 
                         resolve(target);
                     }

@@ -48,7 +48,7 @@ class PlattarObject {
      * be used
      */
     set overrideAttributes(attributes) {
-        this._attributes = attributes;
+        this._attributes = Object.assign({}, attributes);
     }
 
     get relationships() {
