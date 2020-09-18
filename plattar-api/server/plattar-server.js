@@ -136,6 +136,10 @@ PlattarServer.create = (origin, auth) => {
     return newServer;
 };
 
+PlattarServer.disableTLS = () => {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+};
+
 PlattarServer.default = () => {
     return PlattarServer._default;
 };

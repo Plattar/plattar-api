@@ -42,6 +42,15 @@ class PlattarObject {
         return this._attributes;
     }
 
+    /**
+     * This can be used to override the current internal attributes
+     * with new Data. Upon next request, the override attributes will
+     * be used
+     */
+    set overrideAttributes(attributes) {
+        this._attributes = attributes;
+    }
+
     get relationships() {
         return this._relationships;
     }
