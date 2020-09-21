@@ -7,24 +7,15 @@ class PlattarServer {
     }
 
     get prod() {
-        return {
-            api: "https://app.plattar.com/api/v2/",
-            cdn: "https://cdn.plattar.com/"
-        }
+        return PlattarServer.match('prod');
     }
 
     get staging() {
-        return {
-            api: "https://staging.plattar.space/api/v2/",
-            cdn: "https://cdn-staging.plattar.space/"
-        }
+        return PlattarServer.match('staging');
     }
 
     get dev() {
-        return {
-            api: "https://localhost/api/v2/",
-            cdn: "https://cdn-dev.plattar.space/"
-        }
+        return PlattarServer.match('dev');
     }
 
     get authToken() {
@@ -119,6 +110,33 @@ class PlattarServer {
         });
     }
 }
+
+/**
+ * Matches the provided server name with a provided environment
+ */
+PlattarServer.match = (serverName) => {
+    switch (serverName.toLowerCase()) {
+        case 'staging':
+            return {
+                api: "https://staging.plattar.space/api/v2/",
+                cdn: "https://cdn-staging.plattar.space/"
+            }
+        case 'dev':
+        case 'developer':
+        case 'development':
+            return {
+                api: "https://localhost/api/v2/",
+                cdn: "https://cdn-dev.plattar.space/"
+            }
+        case 'prod':
+        case 'production':
+        default:
+            return {
+                api: "https://app.plattar.com/api/v2/",
+                cdn: "https://cdn.plattar.com/"
+            }
+    }
+};
 
 PlattarServer.create = (origin, auth) => {
     const newServer = new PlattarServer();
