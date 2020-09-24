@@ -124,6 +124,8 @@ PlattarServer.match = (serverName) => {
         case 'dev':
         case 'developer':
         case 'development':
+        case 'local':
+        case 'localhost':
             return {
                 api: "https://localhost/api/v2/",
                 cdn: "https://cdn-dev.plattar.space/"
