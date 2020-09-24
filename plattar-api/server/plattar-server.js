@@ -7,15 +7,15 @@ class PlattarServer {
     }
 
     get prod() {
-        return PlattarServer.match('prod');
+        return PlattarServer.match("prod");
     }
 
     get staging() {
-        return PlattarServer.match('staging');
+        return PlattarServer.match("staging");
     }
 
     get dev() {
-        return PlattarServer.match('dev');
+        return PlattarServer.match("dev");
     }
 
     get authToken() {
@@ -116,22 +116,22 @@ class PlattarServer {
  */
 PlattarServer.match = (serverName) => {
     switch (serverName.toLowerCase()) {
-        case 'staging':
+        case "staging":
             return {
                 api: "https://staging.plattar.space/api/v2/",
                 cdn: "https://cdn-staging.plattar.space/"
             }
-        case 'dev':
-        case 'developer':
-        case 'development':
-        case 'local':
-        case 'localhost':
+        case "dev":
+        case "developer":
+        case "development":
+        case "local":
+        case "localhost":
             return {
                 api: "https://localhost/api/v2/",
                 cdn: "https://cdn-dev.plattar.space/"
             }
-        case 'prod':
-        case 'production':
+        case "prod":
+        case "production":
         default:
             return {
                 api: "https://app.plattar.com/api/v2/",
