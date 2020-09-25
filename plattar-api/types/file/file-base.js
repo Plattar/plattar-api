@@ -28,7 +28,7 @@ class FileBase extends PlattarBase {
             return null;
         }
 
-        return this._query.server.originLocation.cdn + this.attributes.path + this.attributes.original_filename;
+        return this.path + this.attributes.original_filename;
     }
 
     /**
@@ -40,7 +40,19 @@ class FileBase extends PlattarBase {
             return null;
         }
 
-        return this._query.server.originLocation.cdn + this.attributes.path + this.attributes.original_upload;
+        return this.path + this.attributes.original_upload;
+    }
+
+    /**
+     * Returns the remote head path to be used with other attributes
+     * to get the final path
+     */
+    get path() {
+        if (!this.attributes.path) {
+            return null;
+        }
+
+        return this._query.server.originLocation.cdn + this.attributes.path;
     }
 }
 
