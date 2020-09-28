@@ -10,12 +10,24 @@ class PlattarServer {
         return PlattarServer.match("prod");
     }
 
+    get isProd() {
+        return this._serverLocation.type === "prod";
+    }
+
     get staging() {
         return PlattarServer.match("staging");
     }
 
+    get isStaging() {
+        return this._serverLocation.type === "staging";
+    }
+
     get dev() {
         return PlattarServer.match("dev");
+    }
+
+    get isDev() {
+        return this._serverLocation.type === "dev";
     }
 
     get authToken() {
@@ -119,7 +131,8 @@ PlattarServer.match = (serverName) => {
         case "staging":
             return {
                 api: "https://staging.plattar.space/api/v2/",
-                cdn: "https://cdn-staging.plattar.space/"
+                cdn: "https://cdn-staging.plattar.space/",
+                type: "staging"
             }
         case "dev":
         case "developer":
@@ -128,14 +141,16 @@ PlattarServer.match = (serverName) => {
         case "localhost":
             return {
                 api: "https://localhost/api/v2/",
-                cdn: "https://cdn-dev.plattar.space/"
+                cdn: "https://cdn-dev.plattar.space/",
+                type: "dev"
             }
         case "prod":
         case "production":
         default:
             return {
                 api: "https://app.plattar.com/api/v2/",
-                cdn: "https://cdn.plattar.com/"
+                cdn: "https://cdn.plattar.com/",
+                type: "prod"
             }
     }
 };
