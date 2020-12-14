@@ -19,6 +19,11 @@ export { SceneVideo } from "./types/scene/scene-video";
 export { SceneVolumetric } from "./types/scene/scene-volumetric";
 export { SceneYoutube } from "./types/scene/scene-youtube";
 
+// export Product and its types
+export { Product } from "./types/product/product";
+export { ProductVariation } from "./types/product/product-variation";
+export { ProductAnnotation } from "./types/product/product-annotation";
+
 // files
 export { FileVideo } from "./types/file/file-video";
 export { FileAudio } from "./types/file/file-audio";
@@ -28,5 +33,6 @@ export { FileModel } from "./types/file/file-model";
 // base types
 export { FileBase as FileObject } from "./types/file/file-base";
 export { SceneBase as SceneObject } from "./types/scene/scene-base";
+export { ProductBase as ProductObject } from "./types/product/product-base";
 
 declare module "@plattar/plattar-api" { }
