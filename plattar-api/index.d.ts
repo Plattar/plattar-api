@@ -1,6 +1,6 @@
 declare module "@plattar/plattar-api" { }
 
-export { PlattarServer as Server } from "./server/plattar-server";
+export { PlattarServer as Server, ServerType, ServerOptions, ServerAuth } from "./server/plattar-server";
 export { PlattarUtil as Util } from "./util/plattar-util";
 export { Application as Project } from "./types/application";
 
@@ -20,6 +20,20 @@ export { SceneShadow } from "./types/scene/scene-shadow";
 export { SceneVideo } from "./types/scene/scene-video";
 export { SceneVolumetric } from "./types/scene/scene-volumetric";
 export { SceneYoutube } from "./types/scene/scene-youtube";
+
+// export Page and its types
+export { Page } from "./types/page/page";
+export { CardButton } from "./types/page/card-button";
+export { CardHTML } from "./types/page/card-html";
+export { CardIFrame } from "./types/page/card-iframe";
+export { CardImage } from "./types/page/card-image";
+export { CardMap } from "./types/page/card-map";
+export { CardParagraph } from "./types/page/card-paragraph";
+export { CardRow } from "./types/page/card-row";
+export { CardSlider } from "./types/page/card-slider";
+export { CardTitle } from "./types/page/card-title";
+export { CardVideo } from "./types/page/card-video";
+export { CardYoutube } from "./types/page/card-youtube";
 
 // export Product and its types
 export { Product } from "./types/product/product";
@@ -42,3 +56,4 @@ export { AsyncJob } from "./types/misc/async-job";
 export { FileBase as FileObject } from "./types/file/file-base";
 export { SceneBase as SceneObject } from "./types/scene/scene-base";
 export { ProductBase as ProductObject } from "./types/product/product-base";
+export { CardBase as CardObject } from "./types/page/card-base";
