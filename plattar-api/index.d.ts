@@ -1,3 +1,5 @@
+declare module "@plattar/plattar-api" { }
+
 export { PlattarServer as Server } from "./server/plattar-server";
 export { PlattarUtil as Util } from "./util/plattar-util";
 export { Application as Project } from "./types/application";
@@ -24,15 +26,19 @@ export { Product } from "./types/product/product";
 export { ProductVariation } from "./types/product/product-variation";
 export { ProductAnnotation } from "./types/product/product-annotation";
 
-// files
+// export File and its types
 export { FileVideo } from "./types/file/file-video";
 export { FileAudio } from "./types/file/file-audio";
 export { FileImage } from "./types/file/file-image";
 export { FileModel } from "./types/file/file-model";
 
+// export misc
+export { ScriptEvent } from "./types/misc/script-event";
+export { Tag } from "./types/misc/tag";
+export { ApplicationBuild } from "./types/misc/application-build";
+export { AsyncJob } from "./types/misc/async-job";
+
 // base types
 export { FileBase as FileObject } from "./types/file/file-base";
 export { SceneBase as SceneObject } from "./types/scene/scene-base";
 export { ProductBase as ProductObject } from "./types/product/product-base";
-
-declare module "@plattar/plattar-api" { }
