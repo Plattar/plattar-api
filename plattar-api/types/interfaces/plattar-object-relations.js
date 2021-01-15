@@ -45,7 +45,7 @@ class PlattarObjectRelations {
      * Search for the specific object type and return a list of all
      * types. This function will always return a list even if length is zero
      * 
-     * @param {*} obj Object type to search. Objext must be an instance of PlattarObject
+     * @param {*} obj Object type to search. Object must be an instance of PlattarObject
      * @param {*} id (optional) Object ID to filter with
      */
     filter(obj, id) {
