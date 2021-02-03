@@ -42,7 +42,7 @@ class PlattarServer {
         const copt = opt || { validate: false };
 
         return new Promise((resolve, reject) => {
-            const server = this.originLocation.api;
+            const server = this.originLocation.api_write;
 
             if (!server) {
                 reject(new Error("Plattar.auth(token) - cannot authenticate as server not set via Plattar.origin(server)"));
@@ -103,7 +103,7 @@ class PlattarServer {
                 return;
             }
 
-            const endpoint = server.api + "ping";
+            const endpoint = server.api_read + "ping";
 
             const options = {
                 method: "GET"
@@ -130,7 +130,8 @@ PlattarServer.match = (serverName) => {
     switch (serverName.toLowerCase()) {
         case "staging":
             return {
-                api: "https://staging.plattar.space/api/v2/",
+                api_read: "https://staging.plattar.space/api/v2/",
+                api_write: "https://cms.plattar.space/api/v2/",
                 cdn: "https://cdn-staging.plattar.space/",
                 type: "staging"
             }
@@ -140,7 +141,8 @@ PlattarServer.match = (serverName) => {
         case "local":
         case "localhost":
             return {
-                api: "https://localhost/api/v2/",
+                api_read: "https://localhost/api/v2/",
+                api_write: "https://localhost/api/v2/",
                 cdn: "https://cdn-dev.plattar.space/",
                 type: "dev"
             }
@@ -148,7 +150,8 @@ PlattarServer.match = (serverName) => {
         case "production":
         default:
             return {
-                api: "https://app.plattar.com/api/v2/",
+                api_read: "https://app.plattar.com/api/v2/",
+                api_write: "https://cms.plattar.com/api/v2/",
                 cdn: "https://cdn.plattar.com/",
                 type: "prod"
             }

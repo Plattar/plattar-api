@@ -49,7 +49,7 @@ class PlattarQuery {
             }
 
             // otherwise, proceed with the fetching op
-            const origin = server.originLocation.api;
+            const origin = server.originLocation.api_read;
             const auth = server.authToken;
 
             const reqopts = {
@@ -116,7 +116,7 @@ class PlattarQuery {
             }
 
             // otherwise, proceed with the fetching op
-            const origin = server.originLocation.api;
+            const origin = server.originLocation.api_write;
             const auth = server.authToken;
 
             const headers = {
