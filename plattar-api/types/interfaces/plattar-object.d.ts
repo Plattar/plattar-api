@@ -10,7 +10,7 @@ export abstract class PlattarObject {
     invalidate(): void;
     get id(): string;
     get relationships(): PlattarObjectRelations;
-    static include(...args: [PlattarObject]): [string];
+    static include(...args: [any]): [string];
     include(...args: [any]): this;
 
     get(opt: RequestOptions | undefined = undefined): Promise<this>;
