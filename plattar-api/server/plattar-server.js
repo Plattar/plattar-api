@@ -140,25 +140,10 @@ PlattarServer.match = (serverName) => {
                 analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "staging"
             }
-        case "dev":
-        case "developer":
-        case "development":
-        case "local":
-        case "localhost":
-            return {
-                base: "https://localhost/",
-                api_read: "https://localhost/api/v2/",
-                api_write: "https://localhost/api/v2/",
-                cdn: "https://cdn-dev.plattar.space/",
-                cdn_image: "http://plattar-dev.s3-website-ap-southeast-2.amazonaws.com/",
-                analytics: "https://localhost:3000/api/v2/analytics/",
-                type: "dev"
-            }
-        case "prod":
-        case "production":
         case "app.plattar.com":
         case "cdn.plattar.com":
-        default:
+        case "prod":
+        case "production":
             return {
                 base: "https://app.plattar.com/",
                 api_read: "https://app.plattar.com/api/v2/",
@@ -167,6 +152,21 @@ PlattarServer.match = (serverName) => {
                 cdn_image: "http://plattar-production.s3-website-ap-southeast-2.amazonaws.com/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "prod"
+            }
+        case "dev":
+        case "developer":
+        case "development":
+        case "local":
+        case "localhost":
+        default:
+            return {
+                base: "https://localhost/",
+                api_read: "https://localhost/api/v2/",
+                api_write: "https://localhost/api/v2/",
+                cdn: "https://cdn-dev.plattar.space/",
+                cdn_image: "http://plattar-dev.s3-website-ap-southeast-2.amazonaws.com/",
+                analytics: "https://localhost:3000/api/v2/analytics/",
+                type: "dev"
             }
     }
 };
