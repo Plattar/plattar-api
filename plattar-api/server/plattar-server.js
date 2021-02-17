@@ -128,11 +128,16 @@ class PlattarServer {
  */
 PlattarServer.match = (serverName) => {
     switch (serverName.toLowerCase()) {
+        case "staging.plattar.space":
+        case "cdn-staging.plattar.space":
         case "staging":
             return {
+                base: "https://staging.plattar.space/",
                 api_read: "https://staging.plattar.space/api/v2/",
                 api_write: "https://cms.plattar.space/api/v2/",
                 cdn: "https://cdn-staging.plattar.space/",
+                cdn_image: "http://plattar-staging.s3-website-ap-southeast-2.amazonaws.com/",
+                analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "staging"
             }
         case "dev":
@@ -141,18 +146,26 @@ PlattarServer.match = (serverName) => {
         case "local":
         case "localhost":
             return {
+                base: "https://localhost/",
                 api_read: "https://localhost/api/v2/",
                 api_write: "https://localhost/api/v2/",
                 cdn: "https://cdn-dev.plattar.space/",
+                cdn_image: "http://plattar-dev.s3-website-ap-southeast-2.amazonaws.com/",
+                analytics: "https://localhost:3000/api/v2/analytics/",
                 type: "dev"
             }
         case "prod":
         case "production":
+        case "app.plattar.com":
+        case "cdn.plattar.com":
         default:
             return {
+                base: "https://app.plattar.com/",
                 api_read: "https://app.plattar.com/api/v2/",
                 api_write: "https://cms.plattar.com/api/v2/",
                 cdn: "https://cdn.plattar.com/",
+                cdn_image: "http://plattar-production.s3-website-ap-southeast-2.amazonaws.com/",
+                analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "prod"
             }
     }
@@ -180,6 +193,10 @@ PlattarServer.disableTLS = () => {
 
 PlattarServer.default = () => {
     return PlattarServer._default;
+};
+
+PlattarServer.location = () => {
+    return PlattarServer.default().originLocation;
 };
 
 module.exports = PlattarServer;

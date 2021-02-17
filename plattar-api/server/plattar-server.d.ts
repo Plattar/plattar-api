@@ -1,6 +1,10 @@
 export interface ServerType {
-    readonly api: string;
+    readonly base: string;
+    readonly api_read: string;
+    readonly api_write: string;
     readonly cdn: string;
+    readonly cdn_image: string;
+    readonly analytics: string;
     readonly type: string;
 }
 
@@ -28,4 +32,5 @@ export class PlattarServer {
     static create(origin: ServerType | undefined = undefined, auth: string | undefined = undefined): PlattarServer;
     static disableTLS(): void;
     static default(): PlattarServer;
+    static location(): ServerType;
 }
