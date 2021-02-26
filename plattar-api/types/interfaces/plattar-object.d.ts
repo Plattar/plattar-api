@@ -10,6 +10,8 @@ export abstract class PlattarObject {
     invalidate(): void;
     get id(): string;
     get relationships(): PlattarObjectRelations;
+    get attributes(): any;
+    get meta(): any;
     static include(...args: [any]): [string];
     include(...args: [any]): this;
 

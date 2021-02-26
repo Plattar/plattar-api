@@ -10,6 +10,7 @@ class PlattarObject {
 
         this._id = id;
         this._attributes = {};
+        this._meta = {};
         this._query = new PlattarQuery(this, server);
         this._relationships = new PlattarObjectRelations(this);
     }
@@ -40,6 +41,13 @@ class PlattarObject {
      */
     get attributes() {
         return this._attributes;
+    }
+
+    /**
+     * Returns any meta-data that should be posted
+     */
+    get meta() {
+        return this._meta;
     }
 
     /**

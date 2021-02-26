@@ -134,7 +134,8 @@ class PlattarQuery {
                         data: {
                             id: target.id,
                             attributes: target.attributes
-                        }
+                        },
+                        meta: target.meta || {}
                     }
                 )
             };
