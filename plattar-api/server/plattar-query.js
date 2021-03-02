@@ -172,9 +172,11 @@ class PlattarQuery {
                         reject(json);
                     }
                     else {
-                        const PlattarUtil = require("../util/plattar-util.js");
+                        if (json.data) {
+                            const PlattarUtil = require("../util/plattar-util.js");
 
-                        PlattarUtil.reconstruct(target, json, { cache: true });
+                            PlattarUtil.reconstruct(target, json, { cache: true });
+                        }
 
                         resolve(target);
                     }
