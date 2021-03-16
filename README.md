@@ -11,6 +11,28 @@
 
 _plattar-api_ allows interfacing with the [Plattar](https://www.plattar.com) API.
 
+### _Quick Use_
+
+* ES2019 Builds via [jsDelivr](https://www.jsdelivr.com/)
+
+```javascript
+// Minified Version (Latest)
+https://cdn.jsdelivr.net/npm/@plattar/plattar-api/build/es2019/plattar-api-min.js
+
+// Non Minified Version (Latest)
+https://cdn.jsdelivr.net/npm/@plattar/plattar-api/build/es2019/plattar-api.js
+```
+
+* ES2015 Builds via [jsDelivr](https://www.jsdelivr.com/)
+
+```javascript
+// Minified Version (Latest)
+https://cdn.jsdelivr.net/npm/@plattar/plattar-api/build/es2015/plattar-api-min.js
+
+// Non Minified Version (Latest)
+https://cdn.jsdelivr.net/npm/@plattar/plattar-api/build/es2015/plattar-api.js
+```
+
 ### _Installation_
 
 *   Install using [npm](https://www.npmjs.com/package/@plattar/plattar-api)
