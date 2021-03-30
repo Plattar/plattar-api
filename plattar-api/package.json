@@ -1,12 +1,11 @@
 {
   "name": "@plattar/plattar-api",
-  "version": "1.101.2",
+  "version": "1.103.1",
   "description": "Module for interfacing with the Plattar API (https://www.plattar.com)",
   "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf build node_modules",
     "build": "npm run clean && npm install && npm run build-es2019 && npm run build-es2015",
     "build-es2019": "rm -rf build/es2019 && mkdir -p build/es2019 && browserify --standalone Plattar index.js -o build/es2019/plattar-api.js && uglifyjs build/es2019/plattar-api.js --output build/es2019/plattar-api-min.js",
@@ -38,13 +37,13 @@
   },
   "homepage": "https://www.plattar.com",
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "@babel/preset-env": "^7.11.5",
-    "browserify": "^16.5.2",
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "browserify": "^17.0.0",
     "uglify-es": "^3.3.9"
   }
 }

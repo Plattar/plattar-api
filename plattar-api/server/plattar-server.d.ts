@@ -28,7 +28,7 @@ export class PlattarServer {
     get originLocation(): ServerType;
     auth(token: string, opt: ServerOptions | undefined = undefined): Promise<PlattarServer>;
     origin(server: ServerType, opt: ServerOptions | undefined = undefined): Promise<PlattarServer>;
-    static match(serverName: string): ServerType;
+    static match(serverName: "prod" | "staging" | "dev"): ServerType;
     static create(origin: ServerType | undefined = undefined, auth: string | undefined = undefined): PlattarServer;
     static disableTLS(): void;
     static default(): PlattarServer;
