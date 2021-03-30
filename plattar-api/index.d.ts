@@ -20,6 +20,7 @@ export { SceneShadow } from "./types/scene/scene-shadow";
 export { SceneVideo } from "./types/scene/scene-video";
 export { SceneVolumetric } from "./types/scene/scene-volumetric";
 export { SceneYoutube } from "./types/scene/scene-youtube";
+export { SceneScript } from "./types/scene/scene-script";
 
 // export Page and its types
 export { Page } from "./types/page/page";
@@ -45,6 +46,7 @@ export { FileVideo } from "./types/file/file-video";
 export { FileAudio } from "./types/file/file-audio";
 export { FileImage } from "./types/file/file-image";
 export { FileModel } from "./types/file/file-model";
+export { FileScript } from "./types/file/file-script";
 
 // export misc
 export { ScriptEvent } from "./types/misc/script-event";

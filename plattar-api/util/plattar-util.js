@@ -16,6 +16,7 @@ const SceneShadow = require("../types/scene/scene-shadow.js");
 const SceneVideo = require("../types/scene/scene-video.js");
 const SceneVolumetric = require("../types/scene/scene-volumetric.js");
 const SceneYoutube = require("../types/scene/scene-youtube.js");
+const SceneScript = require("../types/scene/scene-script.js");
 
 // import Page types and its children
 const Page = require("../types/page/page.js");
@@ -41,6 +42,7 @@ const FileAudio = require("../types/file/file-audio.js");
 const FileVideo = require("../types/file/file-video.js");
 const FileModel = require("../types/file/file-model.js");
 const FileImage = require("../types/file/file-image.js");
+const FileScript = require("../types/file/file-script.js");
 
 // misc
 const ScriptEvent = require("../types/misc/script-event.js");
@@ -165,6 +167,7 @@ PlattarUtil.match = (type) => {
         case SceneVideo.type(): return SceneVideo;
         case SceneVolumetric.type(): return SceneVolumetric;
         case SceneYoutube.type(): return SceneYoutube;
+        case SceneScript.type(): return SceneScript;
         case Page.type(): return Page;
         case CardButton.type(): return CardButton;
         case CardHTML.type(): return CardHTML;
@@ -176,6 +179,7 @@ PlattarUtil.match = (type) => {
         case FileVideo.type(): return FileVideo;
         case FileModel.type(): return FileModel;
         case FileImage.type(): return FileImage;
+        case FileScript.type(): return FileScript;
         case CardMap.type(): return CardMap;
         case CardParagraph.type(): return CardParagraph;
         case CardRow.type(): return CardRow;

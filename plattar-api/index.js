@@ -19,6 +19,7 @@ const SceneShadow = require("./types/scene/scene-shadow.js");
 const SceneVideo = require("./types/scene/scene-video.js");
 const SceneVolumetric = require("./types/scene/scene-volumetric.js");
 const SceneYoutube = require("./types/scene/scene-youtube.js");
+const SceneScript = require("./types/scene/scene-script.js");
 
 // import Page and its types
 const Page = require("./types/page/page.js");
@@ -44,6 +45,7 @@ const FileAudio = require("./types/file/file-audio.js");
 const FileVideo = require("./types/file/file-video.js");
 const FileModel = require("./types/file/file-model.js");
 const FileImage = require("./types/file/file-image.js");
+const FileScript = require("./types/file/file-script.js");
 
 // import misc
 const ScriptEvent = require("./types/misc/script-event.js");
@@ -81,6 +83,7 @@ module.exports = {
     SceneVideo,
     SceneVolumetric,
     SceneYoutube,
+    SceneScript,
     // page and types
     Page,
     CardButton,
@@ -103,6 +106,7 @@ module.exports = {
     FileVideo,
     FileModel,
     FileImage,
+    FileScript,
     FileObject,
     // misc
     ScriptEvent,
