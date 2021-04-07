@@ -1,6 +1,6 @@
 {
   "name": "@plattar/plattar-api",
-  "version": "1.103.2",
+  "version": "1.104.1",
   "description": "Module for interfacing with the Plattar API (https://www.plattar.com)",
   "main": "index.js",
   "module": "index.js",
@@ -8,8 +8,8 @@
   "scripts": {
     "clean": "rm -rf build node_modules",
     "build": "npm run clean && npm install && npm run build-es2019 && npm run build-es2015",
-    "build-es2019": "rm -rf build/es2019 && mkdir -p build/es2019 && browserify --standalone Plattar index.js -o build/es2019/plattar-api.js && uglifyjs build/es2019/plattar-api.js --output build/es2019/plattar-api-min.js",
-    "build-es2015": "rm -rf build/es2015 && mkdir -p build/es2015 && babel build/es2019/plattar-api.js --presets=@babel/env > build/es2015/plattar-api.js && uglifyjs build/es2015/plattar-api.js --output build/es2015/plattar-api-min.js"
+    "build-es2019": "rm -rf build/es2019 && mkdir -p build/es2019 && browserify --standalone Plattar index.js -o build/es2019/plattar-api.js && uglifyjs build/es2019/plattar-api.js --output build/es2019/plattar-api.min.js",
+    "build-es2015": "rm -rf build/es2015 && mkdir -p build/es2015 && babel build/es2019/plattar-api.js --presets=@babel/env > build/es2015/plattar-api.js && uglifyjs build/es2015/plattar-api.js --output build/es2015/plattar-api.min.js"
   },
   "repository": {
     "type": "git",
