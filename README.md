@@ -13,7 +13,7 @@ _plattar-api_ allows interfacing with the [Plattar](https://www.plattar.com) API
 
 ### _Quick Use_
 
-* ES2015 & ES2019 Builds via [jsDelivr](https://www.jsdelivr.com/)
+-   ES2015 & ES2019 Builds via [jsDelivr](https://www.jsdelivr.com/)
 
 ```javascript
 // Minified Version ES2015 & ES2019 (Latest)
@@ -27,17 +27,17 @@ https://cdn.jsdelivr.net/npm/@plattar/plattar-api/build/es2019/plattar-api.js
 
 ### _Installation_
 
-*   Install using [npm](https://www.npmjs.com/package/@plattar/plattar-api)
+-   Install using [npm](https://www.npmjs.com/package/@plattar/plattar-api)
 
-``` console
+```console
 npm install @plattar/plattar-api
 ```
 
 ### _Building For Browsers_
 
-*   Generate ES6 minified JS
+-   Generate ES6 minified JS
 
-``` console
+```console
 cd plattar-api
 npm install
 npm run build
@@ -45,9 +45,9 @@ npm run build
 
 ### _How to Use_
 
-*   Fetch a project from the Plattar API.
+-   Fetch a project from the Plattar API.
 
-``` javascript
+```javascript
 const {
     Project
 } = require('@plattar/plattar-api');
@@ -61,9 +61,9 @@ project.get().then((proj) => {
 });
 ```
 
-*   Plattar API supports relationship chaining using a single request. Fetch a project from the Plattar API that includes scenes and pages. The _Relationships_ component has a number of useful queries that can be performed.
+-   Plattar API supports relationship chaining using a single request. Fetch a project from the Plattar API that includes scenes and pages. The _Relationships_ component has a number of useful queries that can be performed.
 
-``` javascript
+```javascript
 const {
     Project,
     Scene,
@@ -90,9 +90,9 @@ project.get().then((proj) => {
 });
 ```
 
-*   Plattar API also supports multiple relationship chaining using a single request. In this example we fetch a Project with Scenes and Pages aswell as SceneImage that belongs to a Scene.
+-   Plattar API also supports multiple relationship chaining using a single request. In this example we fetch a Project with Scenes and Pages aswell as SceneImage that belongs to a Scene.
 
-``` javascript
+```javascript
 const {
     Project,
     Scene,
@@ -119,9 +119,9 @@ project.get().then((proj) => {
 });
 ```
 
-*   Sometimes, we don't want to include everything as part of a single request. We can chain requests based on logic.
+-   Sometimes, we don't want to include everything as part of a single request. We can chain requests based on logic.
 
-``` javascript
+```javascript
 const {
     Project,
     Scene,
