@@ -5,5 +5,5 @@ export class PlattarObjectRelations {
 
     get parent(): PlattarObject;
     filter<T extends PlattarObject>(obj: new (...args: [any]) => T, id: string | undefined = undefined): [T];
-    find<T extends PlattarObject>(obj: new (...args: [any]) => T, id: string | undefined = undefined): T | undefined;
+    find<T extends PlattarObject>(obj: new (...args: [any]) => T, id: string | null | undefined = null): T | undefined;
 }

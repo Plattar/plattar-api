@@ -102,7 +102,11 @@ class PlattarObjectRelations {
      * @param {*} obj Object type to search. Object must be an instance of PlattarObject
      * @param {*} id (optional) Object ID to filter with
      */
-    find(obj, id) {
+    find(obj, id = null) {
+        if (id === undefined) {
+            return undefined;
+        }
+
         const list = this.filter(obj, id);
 
         if (list.length <= 0) {
