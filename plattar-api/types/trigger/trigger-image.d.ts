@@ -1,4 +1,4 @@
-import { PlattarBase } from "./interfaces/plattar-base";
+import { PlattarBase } from "../interfaces/plattar-base";
 
 export class TriggerImage extends PlattarBase {
     static type(): "triggerimage";
