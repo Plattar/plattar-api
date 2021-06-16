@@ -44,6 +44,9 @@ const FileModel = require("../types/file/file-model.js");
 const FileImage = require("../types/file/file-image.js");
 const FileScript = require("../types/file/file-script.js");
 
+// import Trigger and its types
+const TriggerImage = require("../types/trigger/trigger-image.js");
+
 // misc
 const ScriptEvent = require("../types/misc/script-event.js");
 const Tag = require("../types/misc/tag.js");
@@ -192,6 +195,7 @@ PlattarUtil.match = (type) => {
         case Tag.type(): return Tag;
         case ApplicationBuild.type(): return ApplicationBuild;
         case AsyncJob.type(): return AsyncJob;
+        case TriggerImage.type(): return TriggerImage;
         default: throw new Error("PlattarUtil.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
     }
 };

@@ -53,6 +53,9 @@ const Tag = require("./types/misc/tag.js");
 const ApplicationBuild = require("./types/misc/application-build.js");
 const AsyncJob = require("./types/misc/async-job.js");
 
+// import trigger
+const TriggerImage = require("./types/trigger/trigger-image.js");
+
 // base types
 const SceneObject = require("./types/scene/scene-base.js");
 const CardObject = require("./types/page/card-base.js");
@@ -113,6 +116,8 @@ module.exports = {
     Tag,
     ApplicationBuild,
     AsyncJob,
+    // triggers
+    TriggerImage,
     // base types
     SceneObject,
     CardObject,

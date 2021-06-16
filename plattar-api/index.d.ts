@@ -54,6 +54,9 @@ export { Tag } from "./types/misc/tag";
 export { ApplicationBuild } from "./types/misc/application-build";
 export { AsyncJob } from "./types/misc/async-job";
 
+// export trigger
+export { TriggerImage } from "./types/trigger/trigger-image";
+
 // base types
 export { FileBase as FileObject } from "./types/file/file-base";
 export { SceneBase as SceneObject } from "./types/scene/scene-base";
