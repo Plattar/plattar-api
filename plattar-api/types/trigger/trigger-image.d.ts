@@ -1,6 +1,6 @@
-import { SceneBase } from "./scene-base";
+import { PlattarBase } from "./interfaces/plattar-base";
 
-export class TriggerImage extends SceneBase {
+export class TriggerImage extends PlattarBase {
     static type(): "triggerimage";
 
     get attributes(): any;
