@@ -53,6 +53,7 @@ export { ScriptEvent } from "./types/misc/script-event";
 export { Tag } from "./types/misc/tag";
 export { ApplicationBuild } from "./types/misc/application-build";
 export { AsyncJob } from "./types/misc/async-job";
+export { AssetLibrary } from "./types/misc/asset-library";
 
 // export trigger
 export { TriggerImage } from "./types/trigger/trigger-image";

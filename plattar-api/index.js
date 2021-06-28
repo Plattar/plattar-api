@@ -52,6 +52,7 @@ const ScriptEvent = require("./types/misc/script-event.js");
 const Tag = require("./types/misc/tag.js");
 const ApplicationBuild = require("./types/misc/application-build.js");
 const AsyncJob = require("./types/misc/async-job.js");
+const AssetLibrary = require("./types/misc/asset-library.js");
 
 // import trigger
 const TriggerImage = require("./types/trigger/trigger-image.js");
@@ -116,6 +117,7 @@ module.exports = {
     Tag,
     ApplicationBuild,
     AsyncJob,
+    AssetLibrary,
     // triggers
     TriggerImage,
     // base types
