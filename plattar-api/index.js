@@ -63,8 +63,12 @@ const CardObject = require("./types/page/card-base.js");
 const ProductObject = require("./types/product/product-base.js");
 const FileObject = require("./types/file/file-base.js");
 
+const Version = require("./version");
+
 // create a default server instance to be used globally
 Server.create();
+
+console.log("using @plattar/plattar-api v" + Version);
 
 module.exports = {
     // core types
@@ -123,5 +127,6 @@ module.exports = {
     // base types
     SceneObject,
     CardObject,
-    ProductObject
+    ProductObject,
+    version: Version
 };

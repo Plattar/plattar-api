@@ -1,4 +1,6 @@
-declare module "@plattar/plattar-api" { }
+declare module "@plattar/plattar-api" {
+    export var version: string;
+}
 
 export { PlattarServer as Server, ServerType, ServerOptions, ServerAuth } from "./server/plattar-server";
 export { PlattarUtil as Util } from "./util/plattar-util";
