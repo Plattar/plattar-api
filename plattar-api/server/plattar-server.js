@@ -11,7 +11,7 @@ class PlattarServer {
     }
 
     get isProd() {
-        return this._serverLocation.type === "prod";
+        return this._serverLocation.type === "production";
     }
 
     get staging() {
@@ -151,7 +151,7 @@ PlattarServer.match = (serverName) => {
                 cdn: "https://cdn.plattar.com/",
                 cdn_image: "http://plattar-production.s3-website-ap-southeast-2.amazonaws.com/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
-                type: "prod"
+                type: "production"
             }
         case "dev":
         case "developer":
