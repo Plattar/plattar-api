@@ -60,6 +60,16 @@ export { AssetLibrary } from "./types/misc/asset-library";
 // export trigger
 export { TriggerImage } from "./types/trigger/trigger-image";
 
+// export content-pipeline
+export { Brief } from "./types/content-pipeline/brief";
+export { CommentBrief } from "./types/content-pipeline/comment-brief";
+export { CommentQuote } from "./types/content-pipeline/comment-quote";
+export { CommentSolution } from "./types/content-pipeline/comment-solution";
+export { PipelineUser } from "./types/content-pipeline/pipeline-user";
+export { Quote } from "./types/content-pipeline/quote";
+export { Rating } from "./types/content-pipeline/rating";
+export { Solution } from "./types/content-pipeline/solution";
+
 // base types
 export { FileBase as FileObject } from "./types/file/file-base";
 export { SceneBase as SceneObject } from "./types/scene/scene-base";

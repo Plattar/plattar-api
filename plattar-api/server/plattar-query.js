@@ -186,7 +186,74 @@ class PlattarQuery {
 
     _create() {
         return new Promise((resolve, reject) => {
-            reject(new Error("PlattarQuery." + this.target.type() + ".create() - not implemented"));
+            const target = this.target;
+            const server = this.server;
+
+            // otherwise, proceed with the fetching op
+            const origin = server.originLocation.api_write;
+            const auth = server.authToken;
+
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+
+            Object.assign(headers, auth);
+
+            const reqopts = {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(
+                    {
+                        data: {
+                            attributes: target.attributes
+                        },
+                        meta: target.meta || {}
+                    }
+                )
+            };
+
+            const params = this._ParamFor("create");
+
+            let endpoint = origin + target.type();
+
+            if (params) {
+                let appender = "?";
+
+                params.forEach((param) => {
+                    endpoint = endpoint + appender + param.key + "=" + param.value;
+
+                    appender = "&";
+                });
+            }
+
+            fetch(endpoint, reqopts)
+                .then((res) => {
+                    if (res.ok) {
+                        try {
+                            return res.json();
+                        }
+                        catch (err) {
+                            return new Error("PlattarQuery." + target.type() + ".create() - critical error occured, cannot proceed");
+                        }
+                    }
+
+                    return new Error("PlattarQuery." + target.type() + ".create() - unexpected error occured, cannot proceed. error message is " + res.statusText);
+                })
+                .then((json) => {
+                    if (json instanceof Error) {
+                        reject(json);
+                    }
+                    else {
+                        if (json.data) {
+                            const PlattarUtil = require("../util/plattar-util.js");
+
+                            PlattarUtil.reconstruct(target, json, { cache: true });
+                        }
+
+                        resolve(target);
+                    }
+                });
         });
     }
 

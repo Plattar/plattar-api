@@ -47,6 +47,16 @@ const FileScript = require("../types/file/file-script.js");
 // import Trigger and its types
 const TriggerImage = require("../types/trigger/trigger-image.js");
 
+// import content-pipeline
+const Brief = require("../types/content-pipeline/brief.js");
+const CommentBrief = require("../types/content-pipeline/comment-brief.js");
+const CommentQuote = require("../types/content-pipeline/comment-quote.js");
+const CommentSolution = require("../types/content-pipeline/comment-solution.js");
+const PipelineUser = require("../types/content-pipeline/pipeline-user.js");
+const Quote = require("../types/content-pipeline/quote.js");
+const Rating = require("../types/content-pipeline/rating.js");
+const Solution = require("../types/content-pipeline/solution.js");
+
 // misc
 const ScriptEvent = require("../types/misc/script-event.js");
 const Tag = require("../types/misc/tag.js");
@@ -198,6 +208,14 @@ PlattarUtil.match = (type) => {
         case AsyncJob.type(): return AsyncJob;
         case AssetLibrary.type(): return AssetLibrary;
         case TriggerImage.type(): return TriggerImage;
+        case Brief.type(): return Brief;
+        case CommentBrief.type(): return CommentBrief;
+        case CommentQuote.type(): return CommentQuote;
+        case CommentSolution.type(): return CommentSolution;
+        case PipelineUser.type(): return PipelineUser;
+        case Quote.type(): return Quote;
+        case Rating.type(): return Rating;
+        case Solution.type(): return Solution;
         default: throw new Error("PlattarUtil.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
     }
 };
