@@ -57,6 +57,16 @@ const AssetLibrary = require("./types/misc/asset-library.js");
 // import trigger
 const TriggerImage = require("./types/trigger/trigger-image.js");
 
+// import content-pipeline
+const Brief = require("./types/content-pipeline/brief.js");
+const CommentBrief = require("./types/content-pipeline/comment-brief.js");
+const CommentQuote = require("./types/content-pipeline/comment-quote.js");
+const CommentSolution = require("./types/content-pipeline/comment-solution.js");
+const PipelineUser = require("./types/content-pipeline/pipeline-user.js");
+const Quote = require("./types/content-pipeline/quote.js");
+const Rating = require("./types/content-pipeline/rating.js");
+const Solution = require("./types/content-pipeline/solution.js");
+
 // base types
 const SceneObject = require("./types/scene/scene-base.js");
 const CardObject = require("./types/page/card-base.js");
@@ -124,6 +134,15 @@ module.exports = {
     AssetLibrary,
     // triggers
     TriggerImage,
+    // content-pipeline
+    Brief,
+    CommentBrief,
+    CommentQuote,
+    CommentSolution,
+    PipelineUser,
+    Quote,
+    Rating,
+    Solution,
     // base types
     SceneObject,
     CardObject,
