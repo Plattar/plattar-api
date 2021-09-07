@@ -1,60 +1,33 @@
-import { PlattarObject } from "../server/plattar-object";
+import { PlattarObject } from "../core/plattar-object";
+import { PlattarServer } from "../server/plattar-server";
 
+/**
+ * Contains Utility functions used internally by the Plattar API SDK
+ */
 export class Util {
-    public static reconstruct(parent: PlattarObject, json: any): void {
-        parent.attributes = json.data.attributes;
-
-        const server = parent._query.server;
-
-        // fill the relationships for the object
-        if (json.data.relationships) {
-            for (const [key, value] of Object.entries(json.data.relationships)) {
-                const data = value.data;
-
-                if (Array.isArray(data)) {
-                    data.forEach((item) => {
-                        const construct = PlattarUtil.create(key, item.id, server);
-                        construct._attributes = item.attributes || {};
-
-                        parent.relationships._put(construct);
-                    });
-                }
-                else {
-                    const construct = PlattarUtil.create(key, data.id, server);
-                    construct._attributes = data.attributes || {};
-
-                    parent.relationships._put(construct);
-                }
-            }
-        }
-
-        // loop through the includes and populate as required
-        if (json.included) {
-            json.included.forEach((item) => {
-                const existing = parent.relationships.find(PlattarUtil.match(item.type), item.id);
-
-                if (existing) {
-                    PlattarUtil.reconstruct(existing, {
-                        data: item,
-                        included: json.included
-                    }, options);
-                }
-            });
-        }
-    };
 
     /**
-     * Used to dynamically match types from the Plattar API into class objects
-     * Throws an Error if the provided type does not exit.
      * 
-     * @param {*} type (string) the type of object to create
-     * @param {*} id (string) the id of the object
-     * @param {*} server (optional) the server this object belongs in
+     * @param type - (string) the type of object to create
+     * @param id - (string) the id of the object
+     * @param server - (optional) the server this object belongs in
+     * @returns - New PlattarObject instance
      */
-    PlattarUtil.create = (type, id, server) => {
+    public static create(type: string, id: string, server: PlattarServer): PlattarObject {
         // dynamic class matching from a string type
-        const _DynamicClass = PlattarUtil.match(type);
+        const _DynamicClass = Util.match(type);
 
         return new _DynamicClass(id, server);
+    }
+
+    /**
+     * Dynamic class matching provided an object type as a string
+     * @param type - The type of class to construct
+     * @returns - The instance of the class
+     */
+    public static match(type: string): any {
+        switch (type) {
+            default: throw new Error("Util.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
+        }
     };
 }

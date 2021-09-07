@@ -1,5 +1,5 @@
 import { PlattarObject } from "./plattar-object";
-import { PlattarServer, ServerAuth } from "./plattar-server";
+import { PlattarServer, ServerAuth } from "../server/plattar-server";
 
 export interface QueryOptions {
     cache: boolean;
@@ -197,14 +197,14 @@ export class PlattarQuery {
         });
     }
 
-    public create() {
-        return new Promise((resolve, reject) => {
+    public create(): Promise<PlattarObject> {
+        return new Promise<PlattarObject>((resolve, reject) => {
             reject(new Error("PlattarQuery." + this.target.type + ".create() - not implemented"));
         });
     }
 
-    public delete() {
-        return new Promise((resolve, reject) => {
+    public delete(): Promise<PlattarObject> {
+        return new Promise<PlattarObject>((resolve, reject) => {
             reject(new Error("PlattarQuery." + this.target.type + ".delete(" + this.target.id + ") - not implemented"));
         });
     }
