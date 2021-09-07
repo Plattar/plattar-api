@@ -3,6 +3,12 @@ import { PlattarObject } from "./plattar-object";
 import { PlattarObjectRelations } from "./plattar-object-relations";
 import { PlattarQuery, QueryOptions } from "./plattar-query";
 
+export interface BaseAttributes {
+    readonly created_at?: string;
+    readonly updated_at?: string;
+    readonly deleted_at?: string;
+}
+
 export abstract class PlattarBase extends PlattarObject {
 
     private readonly _id: string;
@@ -10,7 +16,7 @@ export abstract class PlattarBase extends PlattarObject {
     private readonly _query: PlattarQuery;
     private readonly _relationships: PlattarObjectRelations;
 
-    private _attributes: any;
+    protected _attributes: BaseAttributes;
 
     constructor(id: string, server: PlattarServer | null | undefined = null) {
         super();
@@ -26,11 +32,11 @@ export abstract class PlattarBase extends PlattarObject {
         return this._id;
     }
 
-    public get attributes(): any {
+    public get attributes(): BaseAttributes {
         return this._attributes;
     }
 
-    public set attributes(attr: any) {
+    public set attributes(attr: BaseAttributes) {
         this._attributes = Object.assign({}, attr);
     }
 
