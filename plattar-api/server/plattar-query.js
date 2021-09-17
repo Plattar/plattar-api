@@ -24,6 +24,24 @@ class PlattarQuery {
         return this._server;
     }
 
+    getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+
+        return "";
+    }
+
     _get(opt) {
         return new Promise((resolve, reject) => {
             const target = this.target;
@@ -52,9 +70,15 @@ class PlattarQuery {
             const origin = server.originLocation.api_read;
             const auth = server.authToken;
 
+            const headers = {
+                'cookie': 'laravel_session=' + this.getCookie('laravel_session')
+            };
+
+            Object.assign(headers, auth);
+
             const reqopts = {
                 method: "GET",
-                headers: auth
+                headers: headers
             };
 
             const includeQuery = this._IncludeQuery;
@@ -121,7 +145,8 @@ class PlattarQuery {
 
             const headers = {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'cookie': 'laravel_session=' + this.getCookie('laravel_session')
             };
 
             Object.assign(headers, auth);
@@ -195,7 +220,8 @@ class PlattarQuery {
 
             const headers = {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'cookie': 'laravel_session=' + this.getCookie('laravel_session')
             };
 
             Object.assign(headers, auth);
