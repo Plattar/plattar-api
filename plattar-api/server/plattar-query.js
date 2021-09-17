@@ -272,6 +272,7 @@ class PlattarQuery {
                     }
                     else {
                         if (json.data) {
+                            target._id = json.data.id;
                             const PlattarUtil = require("../util/plattar-util.js");
 
                             PlattarUtil.reconstruct(target, json, { cache: true });
