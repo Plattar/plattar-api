@@ -25,6 +25,10 @@ class PlattarQuery {
     }
 
     getCookie(cname) {
+        if (!document) {
+            return "";
+        }
+
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
         let ca = decodedCookie.split(';');
