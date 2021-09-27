@@ -291,7 +291,83 @@ class PlattarQuery {
 
     _delete() {
         return new Promise((resolve, reject) => {
-            reject(new Error("PlattarQuery." + this.target.type() + ".delete(" + this.target.id + ") - not implemented"));
+            const target = this.target;
+            const server = this.server;
+
+            // we cannot perform a GET request without an ID
+            if (!target.id) {
+                reject(new Error("PlattarQuery." + target.type() + ".delete() - object id is missing"));
+                return;
+            }
+
+            // otherwise, proceed with the fetching op
+            const origin = server.originLocation.api_write;
+            const auth = server.authToken;
+
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'cookie': 'laravel_session=' + this.getCookie('laravel_session')
+            };
+
+            Object.assign(headers, auth);
+
+            const reqopts = {
+                method: "DELETE",
+                headers: headers,
+                body: JSON.stringify(
+                    {
+                        data: {
+                            id: target.id,
+                            attributes: target.attributes
+                        },
+                        meta: target.meta || {}
+                    }
+                )
+            };
+
+            const params = this._ParamFor("delete");
+
+            let endpoint = origin + target.type() + "/" + target.id;
+
+            if (params) {
+                let appender = "?";
+
+                params.forEach((param) => {
+                    endpoint = endpoint + appender + param.key + "=" + param.value;
+
+                    appender = "&";
+                });
+            }
+
+            fetch(endpoint, reqopts)
+                .then((res) => {
+                    if (res.ok) {
+                        try {
+                            return res.json();
+                        }
+                        catch (err) {
+                            return new Error("PlattarQuery." + target.type() + ".delete() - critical error occured, cannot proceed");
+                        }
+                    }
+
+                    return new Error("PlattarQuery." + target.type() + ".delete() - unexpected error occured, cannot proceed. error message is " + res.statusText);
+                })
+                .then((json) => {
+                    if (json instanceof Error) {
+                        reject(json);
+                    }
+                    else {
+                        if (json.data) {
+                            target._id = json.data.id;
+                            const PlattarUtil = require("../util/plattar-util.js");
+
+                            PlattarUtil.reconstruct(target, json, { cache: true });
+                        }
+
+                        resolve(target);
+                    }
+                });
         });
     }
 
