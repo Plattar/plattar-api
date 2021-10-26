@@ -69,6 +69,7 @@ export { PipelineUser } from "./types/content-pipeline/pipeline-user";
 export { Quote } from "./types/content-pipeline/quote";
 export { Rating } from "./types/content-pipeline/rating";
 export { Solution } from "./types/content-pipeline/solution";
+export { Folder } from "./types/content-pipeline/folder";
 
 // base types
 export { FileBase as FileObject } from "./types/file/file-base";

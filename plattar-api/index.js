@@ -66,6 +66,7 @@ const PipelineUser = require("./types/content-pipeline/pipeline-user.js");
 const Quote = require("./types/content-pipeline/quote.js");
 const Rating = require("./types/content-pipeline/rating.js");
 const Solution = require("./types/content-pipeline/solution.js");
+const Folder = require("./types/content-pipeline/folder.js");
 
 // base types
 const SceneObject = require("./types/scene/scene-base.js");
@@ -143,6 +144,7 @@ module.exports = {
     Quote,
     Rating,
     Solution,
+    Folder,
     // base types
     SceneObject,
     CardObject,

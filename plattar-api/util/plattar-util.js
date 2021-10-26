@@ -56,6 +56,7 @@ const PipelineUser = require("../types/content-pipeline/pipeline-user.js");
 const Quote = require("../types/content-pipeline/quote.js");
 const Rating = require("../types/content-pipeline/rating.js");
 const Solution = require("../types/content-pipeline/solution.js");
+const Folder = require("../types/content-pipeline/folder.js");
 
 // misc
 const ScriptEvent = require("../types/misc/script-event.js");
@@ -216,6 +217,7 @@ PlattarUtil.match = (type) => {
         case Quote.type(): return Quote;
         case Rating.type(): return Rating;
         case Solution.type(): return Solution;
+        case Folder.type(): return Folder;
         default: throw new Error("PlattarUtil.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
     }
 };
