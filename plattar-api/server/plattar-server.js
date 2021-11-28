@@ -136,7 +136,7 @@ PlattarServer.match = (serverName) => {
                 api_read: "https://staging.plattar.space/api/v2/",
                 api_write: "https://cms.plattar.space/api/v2/",
                 cdn: "https://cdn-staging.plattar.space/",
-                cdn_image: "http://plattar-staging.s3-website-ap-southeast-2.amazonaws.com/",
+                cdn_image: "https://images.plattar.space/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "staging"
             }
@@ -149,7 +149,7 @@ PlattarServer.match = (serverName) => {
                 api_read: "https://app.plattar.com/api/v2/",
                 api_write: "https://cms.plattar.com/api/v2/",
                 cdn: "https://cdn.plattar.com/",
-                cdn_image: "http://plattar-production.s3-website-ap-southeast-2.amazonaws.com/",
+                cdn_image: "https://images.plattar.com/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "production"
             }
@@ -164,7 +164,7 @@ PlattarServer.match = (serverName) => {
                 api_read: "https://localhost/api/v2/",
                 api_write: "https://localhost/api/v2/",
                 cdn: "https://cdn-dev.plattar.space/",
-                cdn_image: "http://plattar-dev.s3-website-ap-southeast-2.amazonaws.com/",
+                cdn_image: "https://images-dev.plattar.space/'",
                 analytics: "https://localhost:3000/api/v2/analytics/",
                 type: "dev"
             }
