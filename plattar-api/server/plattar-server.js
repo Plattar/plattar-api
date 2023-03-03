@@ -161,8 +161,8 @@ PlattarServer.match = (serverName) => {
         default:
             return {
                 base: "https://localhost/",
-                api_read: "https://localhost/api/v2/",
-                api_write: "https://localhost/api/v2/",
+                api_read: "https://localhost:3000/v3/",
+                api_write: "https://localhost:3000/v3/",
                 cdn: "https://cdn-dev.plattar.space/",
                 cdn_image: "https://images-dev.plattar.space/'",
                 analytics: "https://localhost:3000/api/v2/analytics/",
