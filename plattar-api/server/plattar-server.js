@@ -132,7 +132,7 @@ PlattarServer.match = (serverName) => {
         case "cdn-staging.plattar.space":
         case "staging":
             return {
-                base: "https://api.plattar.space/",
+                base: "https://staging.plattar.space/",
                 api_read: "https://api.plattar.space/v3/",
                 api_write: "https://api.plattar.space/v3/",
                 cdn: "https://cdn-staging.plattar.space/",
