@@ -146,8 +146,8 @@ PlattarServer.match = (serverName) => {
         case "production":
             return {
                 base: "https://app.plattar.com/",
-                api_read: "https://app.plattar.com/api/v2/",
-                api_write: "https://cms.plattar.com/api/v2/",
+                api_read: "https://api.plattar.com/v3/",
+                api_write: "https://api.plattar.com/v3/",
                 cdn: "https://cdn.plattar.com/",
                 cdn_image: "https://images.plattar.com/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
