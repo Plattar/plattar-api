@@ -133,8 +133,8 @@ PlattarServer.match = (serverName) => {
         case "staging":
             return {
                 base: "https://staging.plattar.space/",
-                api_read: "https://staging.plattar.space/api/v2/",
-                api_write: "https://cms.plattar.space/api/v2/",
+                api_read: "https://api.plattar.space/v3/",
+                api_write: "https://api.plattar.space/v3/",
                 cdn: "https://cdn-staging.plattar.space/",
                 cdn_image: "https://images.plattar.space/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
@@ -146,8 +146,8 @@ PlattarServer.match = (serverName) => {
         case "production":
             return {
                 base: "https://app.plattar.com/",
-                api_read: "https://app.plattar.com/api/v2/",
-                api_write: "https://cms.plattar.com/api/v2/",
+                api_read: "https://api.plattar.com/v3/",
+                api_write: "https://api.plattar.com/v3/",
                 cdn: "https://cdn.plattar.com/",
                 cdn_image: "https://images.plattar.com/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
@@ -161,8 +161,8 @@ PlattarServer.match = (serverName) => {
         default:
             return {
                 base: "https://localhost/",
-                api_read: "https://localhost/api/v2/",
-                api_write: "https://localhost/api/v2/",
+                api_read: "https://localhost:3000/v3/",
+                api_write: "https://localhost:3000/v3/",
                 cdn: "https://cdn-dev.plattar.space/",
                 cdn_image: "https://images-dev.plattar.space/'",
                 analytics: "https://localhost:3000/api/v2/analytics/",
