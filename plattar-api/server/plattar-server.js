@@ -14,6 +14,14 @@ class PlattarServer {
         return this._serverLocation.type === "production";
     }
 
+    get review() {
+        return PlattarServer.match("review");
+    }
+
+    get isReview() {
+        return this._serverLocation.type === "review";
+    }
+
     get staging() {
         return PlattarServer.match("staging");
     }
@@ -152,6 +160,18 @@ PlattarServer.match = (serverName) => {
                 cdn_image: "https://images.plattar.com/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "production"
+            }
+        case "review.plattar.com":
+        case "review":
+        case "qa":
+            return {
+                base: "https://review.plattar.com/",
+                api_read: "https://review-api.plattar.com/v3/",
+                api_write: "https://review-api.plattar.com/v3/",
+                cdn: "https://cdn.plattar.com/",
+                cdn_image: "https://images.plattar.com/",
+                analytics: "https://c.plattar.space/api/v2/analytics",
+                type: "review"
             }
         case "dev":
         case "developer":
