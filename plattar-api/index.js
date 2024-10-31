@@ -20,6 +20,8 @@ const SceneVideo = require("./types/scene/scene-video.js");
 const SceneVolumetric = require("./types/scene/scene-volumetric.js");
 const SceneYoutube = require("./types/scene/scene-youtube.js");
 const SceneScript = require("./types/scene/scene-script.js");
+const SceneGallery = require("./types/scene/scene-gallery.js");
+const SceneGalleryImage = require("./types/scene/scene-gallery-image.js");
 
 // import Page and its types
 const Page = require("./types/page/page.js");
@@ -103,6 +105,8 @@ module.exports = {
     SceneVolumetric,
     SceneYoutube,
     SceneScript,
+    SceneGallery,
+    SceneGalleryImage,
     // page and types
     Page,
     CardButton,

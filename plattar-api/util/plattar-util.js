@@ -17,6 +17,8 @@ const SceneVideo = require("../types/scene/scene-video.js");
 const SceneVolumetric = require("../types/scene/scene-volumetric.js");
 const SceneYoutube = require("../types/scene/scene-youtube.js");
 const SceneScript = require("../types/scene/scene-script.js");
+const SceneGallery = require("../types/scene/scene-gallery.js");
+const SceneGalleryImage = require("../types/scene/scene-gallery-image.js");
 
 // import Page types and its children
 const Page = require("../types/page/page.js");
@@ -183,6 +185,8 @@ PlattarUtil.match = (type) => {
         case SceneVolumetric.type(): return SceneVolumetric;
         case SceneYoutube.type(): return SceneYoutube;
         case SceneScript.type(): return SceneScript;
+        case SceneGallery.type(): return SceneGallery;
+        case SceneGalleryImage.type(): return SceneGalleryImage;
         case Page.type(): return Page;
         case CardButton.type(): return CardButton;
         case CardHTML.type(): return CardHTML;
