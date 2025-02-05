@@ -23,6 +23,8 @@ export { SceneVideo } from "./types/scene/scene-video";
 export { SceneVolumetric } from "./types/scene/scene-volumetric";
 export { SceneYoutube } from "./types/scene/scene-youtube";
 export { SceneScript } from "./types/scene/scene-script";
+export { SceneGallery } from "./types/scene/scene-gallery";
+export { SceneGalleryImage } from "./types/scene/scene-gallery-image";
 
 // export Page and its types
 export { Page } from "./types/page/page";

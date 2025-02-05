@@ -17,6 +17,8 @@ const SceneVideo = require("../types/scene/scene-video.js");
 const SceneVolumetric = require("../types/scene/scene-volumetric.js");
 const SceneYoutube = require("../types/scene/scene-youtube.js");
 const SceneScript = require("../types/scene/scene-script.js");
+const SceneGallery = require("../types/scene/scene-gallery.js");
+const SceneGalleryImage = require("../types/scene/scene-gallery-image.js");
 
 // import Page types and its children
 const Page = require("../types/page/page.js");
@@ -115,16 +117,22 @@ PlattarUtil.reconstruct = (parent, json, options) => {
             if (Array.isArray(data)) {
                 data.forEach((item) => {
                     const construct = PlattarUtil.create(key, item.id, server);
-                    construct._attributes = item.attributes || {};
 
-                    parent.relationships._put(construct);
+                    if (construct) {
+                        construct._attributes = item.attributes || {};
+
+                        parent.relationships._put(construct);
+                    }
                 });
             }
             else {
                 const construct = PlattarUtil.create(key, data.id, server);
-                construct._attributes = data.attributes || {};
 
-                parent.relationships._put(construct);
+                if (construct) {
+                    construct._attributes = data.attributes || {};
+
+                    parent.relationships._put(construct);
+                }
             }
         }
     }
@@ -156,7 +164,11 @@ PlattarUtil.create = (type, id, server) => {
     // dynamic class matching from a string type
     const _DynamicClass = PlattarUtil.match(type);
 
-    return new _DynamicClass(id, server);
+    if (_DynamicClass) {
+        return new _DynamicClass(id, server);
+    }
+
+    return undefined;
 };
 
 /**
@@ -183,6 +195,8 @@ PlattarUtil.match = (type) => {
         case SceneVolumetric.type(): return SceneVolumetric;
         case SceneYoutube.type(): return SceneYoutube;
         case SceneScript.type(): return SceneScript;
+        case SceneGallery.type(): return SceneGallery;
+        case SceneGalleryImage.type(): return SceneGalleryImage;
         case Page.type(): return Page;
         case CardButton.type(): return CardButton;
         case CardHTML.type(): return CardHTML;
@@ -218,7 +232,10 @@ PlattarUtil.match = (type) => {
         case Rating.type(): return Rating;
         case Solution.type(): return Solution;
         case Folder.type(): return Folder;
-        default: throw new Error("PlattarUtil.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
+        default: {
+            console.warn("PlattarUtil.match(type) - provided type of \"" + type + "\" does not exist and cannot be created");
+            return undefined;
+        }
     }
 };
 
