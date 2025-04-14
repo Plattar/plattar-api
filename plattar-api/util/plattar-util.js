@@ -45,6 +45,7 @@ const FileVideo = require("../types/file/file-video.js");
 const FileModel = require("../types/file/file-model.js");
 const FileImage = require("../types/file/file-image.js");
 const FileScript = require("../types/file/file-script.js");
+const FileJson = require("../types/file/file-json.js");
 
 // import Trigger and its types
 const TriggerImage = require("../types/trigger/trigger-image.js");
@@ -71,7 +72,7 @@ class PlattarUtil { }
 
 /**
  * Checks if the provided Object is a Plattar Object
- * 
+ *
  * @param {*} obj The object instance to check
  */
 PlattarUtil.isPlattarObject = (obj) => {
@@ -92,9 +93,9 @@ PlattarUtil.isPlattarObject = (obj) => {
  * This function will recursively reconstruct an object
  * and its required hierarchy from a provided response JSON
  * from the PLATTAR Server.
- * 
+ *
  * This is an internal use function and should not be used directly
- * 
+ *
  * @param {*} parent The parent object of the request
  * @param {*} json  The parsed JSON data from the PLATTAR Server
  * @param {*} options The cache/process options
@@ -155,7 +156,7 @@ PlattarUtil.reconstruct = (parent, json, options) => {
 /**
  * Used to dynamically match types from the Plattar API into class objects
  * Throws an Error if the provided type does not exit.
- * 
+ *
  * @param {*} type (string) the type of object to create
  * @param {*} id (string) the id of the object
  * @param {*} server (optional) the server this object belongs in
@@ -173,7 +174,7 @@ PlattarUtil.create = (type, id, server) => {
 
 /**
  * Dynamic class matching provided an object type as a string
- * 
+ *
  * @param {*} type The type of class to construct
  */
 PlattarUtil.match = (type) => {
