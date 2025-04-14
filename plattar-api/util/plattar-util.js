@@ -45,7 +45,7 @@ const FileVideo = require("../types/file/file-video.js");
 const FileModel = require("../types/file/file-model.js");
 const FileImage = require("../types/file/file-image.js");
 const FileScript = require("../types/file/file-script.js");
-const FileJson = require("../types/file/file-json.js");
+const FileJSON = require("../types/file/file-json.js");
 
 // import Trigger and its types
 const TriggerImage = require("../types/trigger/trigger-image.js");
@@ -210,6 +210,7 @@ PlattarUtil.match = (type) => {
         case FileModel.type(): return FileModel;
         case FileImage.type(): return FileImage;
         case FileScript.type(): return FileScript;
+        case FileJSON.type(): return FileJSON;
         case CardMap.type(): return CardMap;
         case CardParagraph.type(): return CardParagraph;
         case CardRow.type(): return CardRow;

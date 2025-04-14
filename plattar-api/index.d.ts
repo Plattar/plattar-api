@@ -51,7 +51,7 @@ export { FileAudio } from "./types/file/file-audio";
 export { FileImage } from "./types/file/file-image";
 export { FileModel } from "./types/file/file-model";
 export { FileScript } from "./types/file/file-script";
-export { FileJson } from "./types/file/file-json";
+export { FileJSON } from "./types/file/file-json";
 
 // export misc
 export { ScriptEvent } from "./types/misc/script-event";

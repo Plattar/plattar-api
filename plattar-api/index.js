@@ -48,7 +48,7 @@ const FileVideo = require("./types/file/file-video.js");
 const FileModel = require("./types/file/file-model.js");
 const FileImage = require("./types/file/file-image.js");
 const FileScript = require("./types/file/file-script.js");
-const FileJson = require("./types/file/file-json.js");
+const FileJSON = require("./types/file/file-json.js");
 
 // import misc
 const ScriptEvent = require("./types/misc/script-event.js");
@@ -131,7 +131,7 @@ module.exports = {
     FileModel,
     FileImage,
     FileScript,
-    FileJson,
+    FileJSON,
     FileObject,
     // misc
     ScriptEvent,
