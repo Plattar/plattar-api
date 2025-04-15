@@ -15,8 +15,9 @@ class FileBase extends PlattarBase {
         const FileVideo = require("./file-video.js");
         const FileModel = require("./file-model.js");
         const FileImage = require("./file-image.js");
+        const FileJSON = require("./file-json.js");
 
-        return [FileAudio, FileVideo, FileModel, FileImage];
+        return [FileAudio, FileVideo, FileModel, FileImage, FileJSON];
     }
 
     /**
