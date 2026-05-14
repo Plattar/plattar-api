@@ -38,13 +38,13 @@
   },
   "homepage": "https://www.plattar.com",
   "dependencies": {
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.22.9",
-    "@babel/core": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
-    "browserify": "^17.0.0",
+    "@babel/cli": "^7.28.6",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.5",
+    "browserify": "^17.0.1",
     "uglify-es": "^3.3.9"
   }
 }

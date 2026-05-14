@@ -136,24 +136,26 @@ class PlattarServer {
  */
 PlattarServer.match = (serverName) => {
     switch (serverName.toLowerCase()) {
+        case "cms.plattar.space":
         case "staging.plattar.space":
-        case "cdn-staging.plattar.space":
+        case "cdn.plattar.space":
         case "staging":
             return {
-                base: "https://staging.plattar.space/",
+                base: "https://cms.plattar.space/",
                 api_read: "https://api.plattar.space/v3/",
                 api_write: "https://api.plattar.space/v3/",
-                cdn: "https://cdn-staging.plattar.space/",
+                cdn: "https://cdn.plattar.space/",
                 cdn_image: "https://images.plattar.space/",
                 analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "staging"
             }
         case "app.plattar.com":
+        case "cms.plattar.com":
         case "cdn.plattar.com":
         case "prod":
         case "production":
             return {
-                base: "https://app.plattar.com/",
+                base: "https://cms.plattar.com/",
                 api_read: "https://api.plattar.com/v3/",
                 api_write: "https://api.plattar.com/v3/",
                 cdn: "https://cdn.plattar.com/",
@@ -161,11 +163,12 @@ PlattarServer.match = (serverName) => {
                 analytics: "https://c.plattar.space/api/v2/analytics",
                 type: "production"
             }
+        case "cms-review.plattar.com":
         case "review.plattar.com":
         case "review":
         case "qa":
             return {
-                base: "https://review.plattar.com/",
+                base: "https://cms-review.plattar.com/",
                 api_read: "https://review-api.plattar.com/v3/",
                 api_write: "https://review-api.plattar.com/v3/",
                 cdn: "https://cdn.plattar.com/",
